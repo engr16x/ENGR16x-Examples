@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Update GrovePi Firmware
+Comment=Will Flash the GrovePi firmware to the board.
+Icon=/home/pi/Desktop/source_files/Icons/dexter.ico
+Exec=lxterminal -t "Update GrovePi Firmware" -e sudo /home/pi/Desktop/source_files/firmware_update_grovepi.sh
+Type=Application
+Encoding=UTF-8
+Terminal=false
+Categories=None;

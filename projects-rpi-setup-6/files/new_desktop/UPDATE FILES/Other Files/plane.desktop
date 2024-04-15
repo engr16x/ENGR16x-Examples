@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Plane
+Comment=Paper Airplane
+Icon=/home/pi/Desktop/source_files/Icons/plane.ico
+Exec=lxterminal -t "Paper Airplane" -e sudo /home/pi/Desktop/source_files/plane.sh
+Type=Application
+Encoding=UTF-8
+Terminal=false
+Categories=None;

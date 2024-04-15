@@ -1,0 +1,12 @@
+
+Welcome to the Purdue ENGR 16X v6.0 raspberry pi!
+                                           __ 
+    _______   ____________     _________  / /
+   / ____/ | / / ____/ __ \   <  / ___/ |/ /
+  / __/ /  |/ / / __/ /_/ /   / / __ \|   /
+ / /___/ /|  / /_/ / _, _/   / / /_/ /   |
+/_____/_/ |_/\____/_/ |_|   /_/\____/ /|_|
+                                   /_/ 
+                                      
+If you have any questions, contact a TA.
+"cat /home/pi/credits.txt" for attributions.

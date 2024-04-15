@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Boat
+Comment=Sail Boat
+Icon=/home/pi/Desktop/source_files/Icons/boat.ico
+Exec=lxterminal -t "Sail Boat" -e sudo /home/pi/Desktop/source_files/boat.sh
+Type=Application
+Encoding=UTF-8
+Terminal=false
+Categories=None;
