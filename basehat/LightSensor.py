@@ -1,10 +1,60 @@
-# for LightSensor, follow this code:
-# https://github.com/Seeed-Studio/grove.py/blob/master/grove/grove_light_sensor_v1_2.py
+# LightSensor.py
 
-# For most of these, you will simply just need to rename the class to make the name simpler.
-# You may change property namees/functions to be more consistent or easier to remember, but 
-# that is not 100% necessary all the time.
-# If you are confused on how the class works, consider changing it to be more intuitive
-# so it is also easier for students
+# Created by Noah Grzegorek on behalf of the ENGR 16X Teaching Team
 
-# Aayush
+### DO NOT MODIFY CODE IN THIS FILE ###
+
+# -*- coding: utf-8 -*-
+#
+# The MIT License (MIT)
+#
+# Grove Base Hat for the Raspberry Pi, used to connect grove sensors.
+# Copyright (C) 2018  Seeed Technology Co.,Ltd.
+'''
+This is the code for
+    - `Grove - Light Sensor <https://www.seeedstudio.com/Grove-Light-Sensor-v1.2-p-2727.html>`_
+
+Examples:
+
+    .. code-block:: python
+
+        import time
+        from grove.grove_light_sensor import GroveLightSensor
+
+        # connect to alalog pin 2(slot A2)
+        PIN = 2
+
+        sensor = GroveLightSensor(pin)
+
+        print('Detecting light...')
+        while True:
+            print('Light value: {0}'.format(sensor.light))
+            time.sleep(1)
+'''
+import time, sys, math
+from grove.adc import ADC
+
+__all__ = ["GroveLightSensor"]
+
+class LightSensor(object):
+    '''
+    Grove Light Sensor class
+
+    Args:
+        pin(int): number of analog pin/channel the sensor connected.
+    '''
+    def __init__(self, channel):
+        self.channel = channel
+        self.adc = ADC()
+
+    # Gets the current light strength percentage (0% or 100%)
+    @property
+    def light(self):
+        '''
+        Get the light strength value, maximum value is 100.0%
+
+        Returns:
+            (int): ratio, 0(0.0%) - 1000(100.0%)
+        '''
+        value = self.adc.read(self.channel)
+        return value
