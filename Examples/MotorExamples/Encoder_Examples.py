@@ -1,4 +1,4 @@
-# Encoder_Example.py
+# Encoder_Examples.py
 
 # Created by Noah Grzegorek on behalf of the ENGR 16X Teaching Team
 
