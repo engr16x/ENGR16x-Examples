@@ -20,7 +20,7 @@ def main():
                 curValue = lineFinder.valueL
 
                 # print values
-                print("IR valueL: {}".format(curValue))
+                print("LineFinder value: {}".format(curValue))
 
                 time.sleep(0.5)
 
