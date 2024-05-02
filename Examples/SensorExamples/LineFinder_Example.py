@@ -1,3 +1,9 @@
+# LineFinder_Example.py
+
+# Created by Noah Grzegorek on behalf of the ENGR 16X Teaching Team
+
+### DO NOT MODIFY CODE IN THIS FILE ###
+
 from basehat import LineFinder
 import time
 

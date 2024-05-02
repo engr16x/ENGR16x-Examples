@@ -1,6 +1,6 @@
-# IRSensor.py
+# LineFinder.py
 
-# Created by Seth McConkey on behalf of the ENGR 16X Teaching Team
+# Created by Noah Grzegorek on behalf of the ENGR 16X Teaching Team
 
 ### DO NOT MODIFY CODE IN THIS FILE ###
 
