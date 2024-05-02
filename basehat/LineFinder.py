@@ -1,15 +1,10 @@
-# for LineFinder, follow this code (search for LineSensor):
-# https://github.com/gpiozero/gpiozero/blob/master/gpiozero/input_devices.py
+# IRSensor.py
 
-# For most of these, you will simply just need to rename the class to make the name simpler.
-# You may change property namees/functions to be more consistent or easier to remember, but 
-# that is not 100% necessary all the time.
-# If you are confused on how the class works, consider changing it to be more intuitive
-# so it is also easier for students
+# Created by Seth McConkey on behalf of the ENGR 16X Teaching Team
 
-<<<<<<< HEAD
+### DO NOT MODIFY CODE IN THIS FILE ###
+
 from gpiozero import LineFinder
-from signal import pause
 
 class LineFinder(SmoothedInputDevice):
     """
@@ -75,7 +70,7 @@ class LineFinder(SmoothedInputDevice):
     .. _CamJam #3 EduKit: http://camjam.me/?page_id=1035
     """
     def __init__(self, pin=None, *, pull_up=False, active_state=None,
-                 queue_len=5, sample_rate=100, threshold=0.5, partial=False,
+                 queue_len=1, sample_rate=100, threshold=0.5, partial=False,
                  pin_factory=None):
         super().__init__(
             pin, pull_up=pull_up, active_state=active_state,
@@ -84,11 +79,13 @@ class LineFinder(SmoothedInputDevice):
             pin_factory=pin_factory)
         self._queue.start()
 
+
+    # Gets the current reading whether there it detects black or white (0 or 1)
     @property
     def value(self):
         """
         Returns a value representing the average of the queued values. This
-        is nearer 0 for black under the sensor, and nearer 1 for white under
+        is 0 for black under the sensor, and 1 for white under
         the sensor.
         """
         return super().value
@@ -98,12 +95,3 @@ class LineFinder(SmoothedInputDevice):
         return not self.is_active
 
 
-
-LineSensor.when_line = LineSensor.when_deactivated
-LineSensor.when_no_line = LineSensor.when_activated
-LineSensor.wait_for_line = LineSensor.wait_for_inactive
-LineSensor.wait_for_no_line = LineSensor.wait_for_active
-
-=======
-# Noah
->>>>>>> 34df1b802ac43b94d01cac23be360f40d9e50010
