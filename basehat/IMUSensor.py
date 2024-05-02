@@ -109,11 +109,21 @@ ICM20600_ICM_GYRO_LOW_NOISE, \
 ICM20600_ICM_6AXIS_LOW_POWER,\
 ICM20600_ICM_6AXIS_LOW_NOISE = 0, 1, 2, 3, 4, 5, 6, 7
 
+<<<<<<< HEAD
 __c_module = "akicm"
 
 try:
     _ = util.find_library(__c_module)
     _akicm = cdll.LoadLibrary(_)
+=======
+__c_module = "akicm" # doesnt work
+
+try:
+    _ = util.find_library(__c_module) # doesnt work
+    # print(_)
+    _akicm = cdll.LoadLibrary("libakicm.so")
+    # print(_akicm)
+>>>>>>> 34df1b802ac43b94d01cac23be360f40d9e50010
 except Exception:
     print("Error: module lib{}.so unusable, please install lib{}".
           format(__c_module, __c_module))
@@ -142,11 +152,27 @@ class GroveIMU9DOFICM20600(object):
                                 ICM20600_ICM_6AXIS_LOW_POWER,
 				0)
 
+<<<<<<< HEAD
+=======
+        dev_path = dev_path.encode('utf-8')
+
+>>>>>>> 34df1b802ac43b94d01cac23be360f40d9e50010
         _akicm.rpi_icm20600_init(self._dev,
                              dev_path,
                              addr,
                              byref(icm20600_cfg))
 
+<<<<<<< HEAD
+=======
+    def __del__(self):
+        _akicm.rpi_icm20600_free(self._dev)
+
+    def get_temperature(self):
+        t = c_double()
+        _akicm.rpi_icm20600_get_temperature(self._dev, byref(t))
+        return t.value
+
+>>>>>>> 34df1b802ac43b94d01cac23be360f40d9e50010
     def get_accel(self):
         x, y, z = c_double(), c_double(), c_double()
         _akicm.rpi_icm20600_get_accel(self._dev,
@@ -159,6 +185,10 @@ class GroveIMU9DOFICM20600(object):
                                   byref(x), byref(y), byref(z))
         return x.value, y.value, z.value
 
+<<<<<<< HEAD
+=======
+    temperature = get_temperature
+>>>>>>> 34df1b802ac43b94d01cac23be360f40d9e50010
 
 
 
@@ -186,11 +216,22 @@ class GroveIMU9DOFAK09918(object):
         self._dev = _akicm.rpi_ak09918_alloc()
         dev_path = "/dev/i2c-{}".format(Bus().bus)
 
+<<<<<<< HEAD
+=======
+        dev_path = dev_path.encode('utf-8')
+
+>>>>>>> 34df1b802ac43b94d01cac23be360f40d9e50010
         _akicm.rpi_ak09918_init(self._dev,
                              dev_path,
                              addr,
                              AK09918_NORMAL)
 
+<<<<<<< HEAD
+=======
+    def __del__(self):
+        _akicm.rpi_ak09918_free(self._dev)
+
+>>>>>>> 34df1b802ac43b94d01cac23be360f40d9e50010
     def mode(self, mode = None):
         if not mode is None:
             _akicm.rpi_ak09918_set_mode(self._dev, mode)
@@ -238,6 +279,7 @@ def main():
     ak.mode(AK09918_CONTINUOUS_100HZ)
 
     while True:
+<<<<<<< HEAD
         x, y, z = icm.get_accel()
         print(" AX = %7.2f mg  AY = %7.2f mg  AZ = %7.2f mg" % (x, y, z))
         x, y, z = icm.get_gyro()
@@ -245,9 +287,23 @@ def main():
         if ak.is_ready():
             # if ak.is_skip():
             #     print("*** call get_magnet() too slowly, data droped by AK09918")
+=======
+        print("Temperature: {:.2f} C".format(icm.get_temperature()))
+        x, y, z = icm.get_accel()
+        print(" AX = %7.2f mg  AY = %7.2f mg  AZ = %7.2f mg" % (x, y, z))
+        x, y, z = icm.get_gyro()
+        print(" GX = %7.2f dps GY = %7.2f dps GZ = %7.2f dps" % (x, y, z))          
+        if ak.is_ready():
+            #if ak.is_skip():
+            #    print("*** call get_magnet() too slowly, data droped by AK09918")
+>>>>>>> 34df1b802ac43b94d01cac23be360f40d9e50010
             x, y, z = ak.get_magnet()
             print(" MX = %7.2f uT  MY = %7.2f uT  MZ = %7.2f uT" % (x, y, z))        
         time.sleep(1.0)
 
 if __name__ == '__main__':
+<<<<<<< HEAD
     main()
+=======
+    main()
+>>>>>>> 34df1b802ac43b94d01cac23be360f40d9e50010

@@ -1,5 +1,5 @@
 # for LineFinder, follow this code (search for LineSensor):
-# https://github.com/gpiozero/gpiozero/blobs/master/gpiozero/input_devices.py
+# https://github.com/gpiozero/gpiozero/blob/master/gpiozero/input_devices.py
 
 # For most of these, you will simply just need to rename the class to make the name simpler.
 # You may change property namees/functions to be more consistent or easier to remember, but 
@@ -7,6 +7,7 @@
 # If you are confused on how the class works, consider changing it to be more intuitive
 # so it is also easier for students
 
+<<<<<<< HEAD
 from gpiozero import LineFinder
 from signal import pause
 
@@ -103,3 +104,6 @@ LineSensor.when_no_line = LineSensor.when_activated
 LineSensor.wait_for_line = LineSensor.wait_for_inactive
 LineSensor.wait_for_no_line = LineSensor.wait_for_active
 
+=======
+# Noah
+>>>>>>> 34df1b802ac43b94d01cac23be360f40d9e50010
