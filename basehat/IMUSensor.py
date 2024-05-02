@@ -1,16 +1,9 @@
-# for IMU, follow this code:
-# https://github.com/Seeed-Studio/grove.py/blob/master/grove/grove_imu_9dof_icm20600_ak09918.py
+# IMUSensor.py
 
-# For most of these, you will simply just need to rename the class to make the name simpler.
-# You may change property namees/functions to be more consistent or easier to remember, but 
-# that is not 100% necessary all the time.
-# If you are confused on how the class works, consider changing it to be more intuitive
-# so it is also easier for students
+# Created by Noah Grzegorek on behalf of the ENGR 16X Teaching Team
 
-# Noah
+### DO NOT MODIFY CODE IN THIS FILE ###
 
-#!/usr/bin/env python
-#
 # This is the code for Grove - IMU 9DOF (ICM20600+AK09918).
 # (https://www.seeedstudio.com/Grove-IMU-9DOF-ICM20600-AK0991-p-3157.html)
 # which is 9 Degrees of Freedom IMU (Inertial measurement unit) with
@@ -48,6 +41,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 '''
+
+### ENGR 161X STUDENTS IGNORE THIS CODE ###
+
 from __future__ import division
 from __future__ import print_function
 from ctypes import *
@@ -109,13 +105,6 @@ ICM20600_ICM_GYRO_LOW_NOISE, \
 ICM20600_ICM_6AXIS_LOW_POWER,\
 ICM20600_ICM_6AXIS_LOW_NOISE = 0, 1, 2, 3, 4, 5, 6, 7
 
-<<<<<<< HEAD
-__c_module = "akicm"
-
-try:
-    _ = util.find_library(__c_module)
-    _akicm = cdll.LoadLibrary(_)
-=======
 __c_module = "akicm" # doesnt work
 
 try:
@@ -123,7 +112,6 @@ try:
     # print(_)
     _akicm = cdll.LoadLibrary("libakicm.so")
     # print(_akicm)
->>>>>>> 34df1b802ac43b94d01cac23be360f40d9e50010
 except Exception:
     print("Error: module lib{}.so unusable, please install lib{}".
           format(__c_module, __c_module))
@@ -152,18 +140,13 @@ class GroveIMU9DOFICM20600(object):
                                 ICM20600_ICM_6AXIS_LOW_POWER,
 				0)
 
-<<<<<<< HEAD
-=======
-        dev_path = dev_path.encode('utf-8')
+        dev_path = dev_path.encode('utf-8') # SEED STUDIO SHOULD HIRE SETH MCCONKEY
 
->>>>>>> 34df1b802ac43b94d01cac23be360f40d9e50010
         _akicm.rpi_icm20600_init(self._dev,
                              dev_path,
                              addr,
                              byref(icm20600_cfg))
 
-<<<<<<< HEAD
-=======
     def __del__(self):
         _akicm.rpi_icm20600_free(self._dev)
 
@@ -172,7 +155,6 @@ class GroveIMU9DOFICM20600(object):
         _akicm.rpi_icm20600_get_temperature(self._dev, byref(t))
         return t.value
 
->>>>>>> 34df1b802ac43b94d01cac23be360f40d9e50010
     def get_accel(self):
         x, y, z = c_double(), c_double(), c_double()
         _akicm.rpi_icm20600_get_accel(self._dev,
@@ -185,10 +167,7 @@ class GroveIMU9DOFICM20600(object):
                                   byref(x), byref(y), byref(z))
         return x.value, y.value, z.value
 
-<<<<<<< HEAD
-=======
     temperature = get_temperature
->>>>>>> 34df1b802ac43b94d01cac23be360f40d9e50010
 
 
 
@@ -216,22 +195,16 @@ class GroveIMU9DOFAK09918(object):
         self._dev = _akicm.rpi_ak09918_alloc()
         dev_path = "/dev/i2c-{}".format(Bus().bus)
 
-<<<<<<< HEAD
-=======
-        dev_path = dev_path.encode('utf-8')
+        dev_path = dev_path.encode('utf-8') # SEED STUDIO SHOULD HIRE SETH MCCONKEY
 
->>>>>>> 34df1b802ac43b94d01cac23be360f40d9e50010
         _akicm.rpi_ak09918_init(self._dev,
                              dev_path,
                              addr,
                              AK09918_NORMAL)
 
-<<<<<<< HEAD
-=======
     def __del__(self):
         _akicm.rpi_ak09918_free(self._dev)
 
->>>>>>> 34df1b802ac43b94d01cac23be360f40d9e50010
     def mode(self, mode = None):
         if not mode is None:
             _akicm.rpi_ak09918_set_mode(self._dev, mode)
@@ -264,46 +237,26 @@ class GroveIMU9DOFAK09918(object):
     def err_string(self, errval):
         return _akicm.rpi_ak09918_err_string(errval)
 
-Grove = GroveIMU9DOFICM20600
+### END OF CODE TO IGNORE FOR 161X STUDENTS ###
 
-def main():
-    import time
-    print(\
-""" Make sure Grove-IMU-9DOF-ICM20600-AK09918
-   inserted in one I2C slot of Grove-Base-Hat
-""")
 
-    icm = GroveIMU9DOFICM20600()
+### IMPORTANT CODE FOR ENGR 161X STUDENTS ###
 
-    ak  = GroveIMU9DOFAK09918()
-    ak.mode(AK09918_CONTINUOUS_100HZ)
+# Class combining all sensor functionality into one class for ease of use
+class IMUSensor(object):
 
-    while True:
-<<<<<<< HEAD
-        x, y, z = icm.get_accel()
-        print(" AX = %7.2f mg  AY = %7.2f mg  AZ = %7.2f mg" % (x, y, z))
-        x, y, z = icm.get_gyro()
-        print(" GX = %7.2f dps GY = %7.2f dps GZ = %7.2f dps" % (x, y, z))
-        if ak.is_ready():
-            # if ak.is_skip():
-            #     print("*** call get_magnet() too slowly, data droped by AK09918")
-=======
-        print("Temperature: {:.2f} C".format(icm.get_temperature()))
-        x, y, z = icm.get_accel()
-        print(" AX = %7.2f mg  AY = %7.2f mg  AZ = %7.2f mg" % (x, y, z))
-        x, y, z = icm.get_gyro()
-        print(" GX = %7.2f dps GY = %7.2f dps GZ = %7.2f dps" % (x, y, z))          
-        if ak.is_ready():
-            #if ak.is_skip():
-            #    print("*** call get_magnet() too slowly, data droped by AK09918")
->>>>>>> 34df1b802ac43b94d01cac23be360f40d9e50010
-            x, y, z = ak.get_magnet()
-            print(" MX = %7.2f uT  MY = %7.2f uT  MZ = %7.2f uT" % (x, y, z))        
-        time.sleep(1.0)
+    # This sensor utilizes two different chips and they are initialized here so all functions can be called easily
+    def __init__(self, icmChip = GroveIMU9DOFICM20600, akChip = GroveIMU9DOFAK09918):
+        self.akChip.mode(AK09918_CONTINUOUS_100HZ)
 
-if __name__ == '__main__':
-<<<<<<< HEAD
-    main()
-=======
-    main()
->>>>>>> 34df1b802ac43b94d01cac23be360f40d9e50010
+    # Function returns a three dimensional vector of the respective x, y, and z acceleration values (Mega-Goombas)
+    def getAccel(self):
+        return self.icmChip.get_accel()
+    
+    # Function returns a three dimensional vector of the respective x, y, and z gyroscope values (Degrees/Second)
+    def getGyro(self):
+        return self.akChip.get_gyro()
+
+    # Function returns a three dimensional vector of the respective x, y, and z magnetic values (Micro-Teslas)
+    def getMag(self):
+        return self.akChip.get_magnet()
