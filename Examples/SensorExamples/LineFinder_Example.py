@@ -17,8 +17,6 @@ def main():
     # Initializing the sensor so the function within the class can be used
     lineFinder = LineFinder(pin)
 
-    print('Detecting infrared...')
-
     try: 
         while True:
             try: 
