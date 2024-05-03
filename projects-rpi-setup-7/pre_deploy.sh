@@ -17,7 +17,7 @@ echo "Installing and uninstalling requirenents"
 # Generic dependencies
 sudo apt-get install samba libncurses5 default-jdk xrdp dnsmasq hostapd libffi-dev libatlas-base-dev -y
 
-# stuff that is in the grovepi deb dependencies
+# stuff that is in the grove.py deb dependencies
 sudo apt-get install --no-install-recommends -y git libi2c-dev i2c-tools  \
     python3-setuptools python3-pip python3-smbus python3-dev python3-serial python3-rpi.gpio python3-numpy python3-scipy
 
@@ -29,10 +29,13 @@ sudo apt-get purge geany -y
 sudo apt autoremove -y
 
 # install grove.py library for BaseHAT
+# clone the repository (copy the code to the Pi)
 git clone https://github.com/Seeed-Studio/grove.py
 cd grove.py
+# build the code from the repository
 sudo pip3 install . --break-system-packages
 cd /home/pi
+# install dependencies for the IMU
 git clone https://github.com/turmary/bmi088-python.git
 cd bmi088-python
 git submodule init
@@ -40,11 +43,14 @@ git submodule update
 make install
 sudo cp libakicm.so /lib
 cd ..
+
+# remove unecessary directories (folders)
 rm -rf bmi088-python 
 
 # install BuildHAT library
 sudo pip3 install buildhat --break-system-packages
 
+# update Pi libraries
 sudo apt update
 
 echo "Changing raspi-config settings"
@@ -96,20 +102,10 @@ python --version
 echo "It should be 3.11 or greater"
 
 echo
-# echo "Setting IDLE3 as default python editor"
-# echo "text/x-python=idle-python3.7.desktop" | sudo tee -a /usr/share/applications/defaults.list > /dev/null
-
 echo
-echo "Copying source file folder to desktop"
-cp -r $CALLDIR/files/source_files/. /home/pi/Desktop/source_files/
 
 echo "Copying newdesktop directory to pi desktop"
 cp -r $CALLDIR/files/new_desktop/. /home/pi/Desktop/new_desktop/
-
-
-# echo "Copying Dexter examples to examples folder"
-# cp -r /home/pi/Dexter/BrickPi3/Software/Python/Examples/. /home/pi/Desktop/new_desktop/Examples/BrickPi3/
-# cp -r /home/pi/Dexter/GrovePi/Software/Python/. /home/pi/Desktop/new_desktop/Examples/GrovePi/
 
 
 # Currently don't have access to the ENGR16x GitHub 
@@ -117,14 +113,21 @@ cp -r $CALLDIR/files/new_desktop/. /home/pi/Desktop/new_desktop/
 # forked to the official ENGR16x GitHub account, and then this script needs 
 # to be changed to pull from the new repository under the official account
 cd /home/pi/
+# clone the Examples repository (copy the code)
 git clone https://github.com/SethThMc/ENGR16x-Examples.git
 mkdir /home/pi/Desktop/new_desktop/Examples
+# copy examples to the desktop
 cp -r /home/pi/ENGR16x-Examples/Examples/. /home/pi/Desktop/new_desktop/Examples
+# copy source files to Desktop
 mkdir /home/pi/Desktop/new_desktop/basehat
 cp -r /home/pi/ENGR16x-Examples/basehat/. /home/pi/Desktop/new_desktop/basehat
 mkdir /home/pi/Desktop/new_desktop/buildhat
 cp -r /home/pi/ENGR16x-Examples/buildhat/. /home/pi/Desktop/new_desktop/buildhat
+
+# copy all of the classes to PATH so that from basebat import * can be used
 sudo cp /home/pi/ENGR16x-Examples/basehat.py /usr/local/lib/python3.11/dist-packages/basehat.py
+
+# remove unecessary directories
 rm -rf ENGR16x-Examples
 
 echo
@@ -229,14 +232,6 @@ git remote add -f origin https://github.com/engr16x/projects-updates.git
 git pull origin master
 cd ..
 
-
-
-
-
-
-
-
-
 cd $CALLDIR/setup_files
 
 echo "Making the desktop bg change script executable"
@@ -244,13 +239,6 @@ sudo chmod 755 ./21_changeBackground.sh
 
 echo "Making source files executable"
 python3 ./03_makeSourceFilesExecutable.py
-
-
-# this is done earlier, i copied the code into here.
-#echo "Setting up GitHub Update file structure"
-#sudo ./04_setupUpdateFiles.sh
-
-
 
 cd $CALLDIR/setup_files
 
