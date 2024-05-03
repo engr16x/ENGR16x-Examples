@@ -102,7 +102,7 @@ class UltrasonicSensor(object):
 
 ### DO NOT MODIFY CODE IN THIS FILE ###
 
-from gpiozero import LineFinder
+from gpiozero import SmoothedInputDevice
 
 class LineFinder(SmoothedInputDevice):
     """
@@ -228,8 +228,6 @@ Examples:
 import time, sys, math
 from grove.adc import ADC
 
-__all__ = ["GroveLightSensor"]
-
 class LightSensor(object):
     '''
     Grove Light Sensor class
@@ -286,17 +284,17 @@ IR Sensor:
 
         IR = IRSensor(0, 1)
     
-    IRSensor.valueL:
-        Read the value from the left sensor. If your sensor's name is 'IR', accessing the left
+    IRSensor.value1:
+        Read the value from the sensor labeled sensor1. If your sensor's name is 'IR', accessing the left
         value will look like this:
 
-        value_from_left_sensor = IR.valueL
+        value_from_sensor1 = IR.value1
 
-    IRSensor.valueR:
-        Read the value from the right sensor. If your sensor's name is 'IR', accessing the right
+    IRSensor.value2:
+        Read the value from the sensor labeled sensor2. If your sensor's name is 'IR', accessing the right
         value will look like this:
 
-        value_from_right_sensor = IR.valueR
+        value_from_sensor2 = IR.value2
     
     IRSensor_Example.py: 
         Usage of this code is demonstrated in the example file for this sensor in the Examples
@@ -324,7 +322,7 @@ class IRSensor(object):
         self.adc = ADC()
 
     @property
-    def valueL(self):
+    def value1(self):
         '''
         Get the infrared strength value, maximum value is 999
 
@@ -335,7 +333,7 @@ class IRSensor(object):
         return value
 
     @property
-    def valueR(self):
+    def value2(self):
         '''
         Get the infrared strength value, maximum value is 999
 
@@ -345,7 +343,7 @@ class IRSensor(object):
         value = self.adc.read(self.channel2)
         return value
 
-  # IMUSensor.py
+# IMUSensor.py
 
 # Created by Noah Grzegorek on behalf of the ENGR 16X Teaching Team
 
@@ -591,16 +589,18 @@ class GroveIMU9DOFAK09918(object):
 class IMUSensor(object):
 
     # This sensor utilizes two different chips and they are initialized here so all functions can be called easily
-    def __init__(self, icmChip = GroveIMU9DOFICM20600, akChip = GroveIMU9DOFAK09918):
+    def __init__(self):
+        self.icmChip = GroveIMU9DOFICM20600()
+        self.akChip = GroveIMU9DOFAK09918()
         self.akChip.mode(AK09918_CONTINUOUS_100HZ)
 
     # Function returns a three dimensional vector of the respective x, y, and z acceleration values (Mega-Goombas)
     def getAccel(self):
-        return self.icmChip.get_accel()
+        return (tuple(x / 100 for x in self.icmChip.get_accel()))
     
     # Function returns a three dimensional vector of the respective x, y, and z gyroscope values (Degrees/Second)
     def getGyro(self):
-        return self.akChip.get_gyro()
+        return self.icmChip.get_gyro()
 
     # Function returns a three dimensional vector of the respective x, y, and z magnetic values (Micro-Teslas)
     def getMag(self):
@@ -617,45 +617,93 @@ class IMUSensor(object):
 # so it is also easier for students
 
 # Created by Aayush Iyengar on behalf on the ENGR 16X Teaching Team
-import time
-from grove.button import Button
-from grove.factory import Factory
+from gpiozero import DigitalInputDevice
+from gpiozero import HoldMixin
 
-class GroveButton:
-    '''
-    Grove Button class
+class Button(HoldMixin, DigitalInputDevice):
+    """
+    Extends :class:`DigitalInputDevice` and represents a simple push button
+    or switch.
 
-    Arguments:
-        pin ---> type: int: the number of gpio/slot your grove device connected.
-    '''
-    def __init__(self, pin):
-        #Initialize the GroveButton instance with the Button class
-        self.button = Button(pin)
-        self.last_press_time = time.time()  #Record the last press time
-        self.on_press_callback = None
-        self.on_release_callback = None
-        self.button.on_event(self.handle_event)
+    Connect one side of the button to a ground pin, and the other to any GPIO
+    pin. Alternatively, connect one side of the button to the 3V3 pin, and the
+    other to any GPIO pin, then set *pull_up* to :data:`False` in the
+    :class:`Button` constructor.
 
-    def handle_event(self, event):
-        #Take the button press and release it
-        elapsed_time = event["time"] - self.last_press_time
-        self.last_press_time = event["time"]
-        if event["code"] == Button.EV_LEVEL_CHANGED:
-            if event["pressed"] and callable(self.on_press_callback):
-                self.on_press_callback(elapsed_time)
-            elif not event["pressed"] and callable(self.on_release_callback):
-                self.on_release_callback(elapsed_time)
+    The following example will print a line of text when the button is pushed::
 
-    def set_on_press_callback(self, callback):
-        #Set the callback function for button press event
-        if callable(callback):
-            self.on_press_callback = callback
+        from gpiozero import Button
 
-    def set_on_release_callback(self, callback):
-        #Set the callback function for button release event
-        if callable(callback):
-            self.on_release_callback = callback
+        button = Button(4)
+        button.wait_for_press()
+        print("The button was pressed!")
 
+    :type pin: int or str
+    :param pin:
+        The GPIO pin which the button is connected to. See :ref:`pin-numbering`
+        for valid pin numbers. If this is :data:`None` a :exc:`GPIODeviceError`
+        will be raised.
+
+    :type pull_up: bool or None
+    :param pull_up:
+        If :data:`True` (the default), the GPIO pin will be pulled high by
+        default.  In this case, connect the other side of the button to ground.
+        If :data:`False`, the GPIO pin will be pulled low by default. In this
+        case, connect the other side of the button to 3V3. If :data:`None`, the
+        pin will be floating, so it must be externally pulled up or down and
+        the ``active_state`` parameter must be set accordingly.
+
+    :type active_state: bool or None
+    :param active_state:
+        See description under :class:`InputDevice` for more information.
+
+    :type bounce_time: float or None
+    :param bounce_time:
+        If :data:`None` (the default), no software bounce compensation will be
+        performed. Otherwise, this is the length of time (in seconds) that the
+        component will ignore changes in state after an initial change.
+
+    :param float hold_time:
+        The length of time (in seconds) to wait after the button is pushed,
+        until executing the :attr:`when_held` handler. Defaults to ``1``.
+
+    :param bool hold_repeat:
+        If :data:`True`, the :attr:`when_held` handler will be repeatedly
+        executed as long as the device remains active, every *hold_time*
+        seconds. If :data:`False` (the default) the :attr:`when_held` handler
+        will be only be executed once per hold.
+
+    :type pin_factory: Factory or None
+    :param pin_factory:
+        See :doc:`api_pins` for more information (this is an advanced feature
+        which most users can ignore).
+    """
+    def __init__(self, pin=None, *, pull_up=False, active_state=None,
+                 bounce_time=None, hold_time=1, hold_repeat=False,
+                 pin_factory=None):
+        super().__init__(
+            pin, pull_up=pull_up, active_state=active_state,
+            bounce_time=bounce_time, pin_factory=pin_factory)
+        self.hold_time = hold_time
+        self.hold_repeat = hold_repeat
+
+    @property
+    def value(self):
+        """
+        Returns 1 if the button is currently pressed, and 0 if it is not.
+        """
+        return super().value
+
+
+
+Button.is_pressed = Button.is_active
+Button.pressed_time = Button.active_time
+Button.when_pressed = Button.when_activated
+Button.when_released = Button.when_deactivated
+Button.wait_for_press = Button.wait_for_active
+Button.wait_for_release = Button.wait_for_inactive
+
+'''
 def run_button_example():
     #Main function to run the button example
     pin = 5  #Assuming pin 5 for the Grove Button
@@ -681,3 +729,4 @@ def run_button_example():
 #Run the example when this script is executed
 if __name__ == '__main__':
     run_button_example()
+'''
