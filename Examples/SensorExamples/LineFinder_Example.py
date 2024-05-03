@@ -2,6 +2,9 @@
 
 # Created by Noah Grzegorek on behalf of the ENGR 16X Teaching Team
 
+# More info and instruction on using this sensor can be found in the basehat folder
+# on your Pi's Desktop 
+
 from basehat import LineFinder
 import time
 

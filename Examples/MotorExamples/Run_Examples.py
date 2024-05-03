@@ -2,8 +2,6 @@
 
 # Created by Noah Grzegorek on behalf of the ENGR 16X Teaching Team
 
-### DO NOT MODIFY CODE IN THIS FILE ###
-
 import time
 from buildhat import Motor
 
