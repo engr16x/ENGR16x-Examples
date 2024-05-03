@@ -2,7 +2,7 @@
 
 # Created by Seth McConkey on behalf of the ENGR 16X Teaching Team
 
-# More info and instruction on using this sensor can be found in the Modules folder
+# More info and instruction on using this sensor can be found in the basehat folder
 # on your Pi's Desktop 
 
 # import the necessary packages for your sensor and code
