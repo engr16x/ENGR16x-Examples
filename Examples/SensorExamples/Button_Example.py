@@ -1,5 +1,8 @@
 # Created by Aayush Iyengar on behalf on the ENGR 16X Teaching Team
 
+# More info and instruction on using this sensor can be found in the basehat folder
+# on your Pi's Desktop 
+
 from basehat import Button  # Import the simplified Button class
 import time
 #connecting with the button for the button connected in pin 5 (this is customizable below)
