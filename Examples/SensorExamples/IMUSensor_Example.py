@@ -12,14 +12,14 @@ import time
 def main():
 
     # Initializing the IMU so the example can utilize the sensor
-    IMU = IMUSensor
+    IMU = IMUSensor()
     
     try: 
         while True:
             try: 
                 # Reading acceleration values and printing them
                 x, y, z = IMU.getAccel()
-                print(" AX = %7.2f mg  AY = %7.2f mg  AZ = %7.2f mg" % (x, y, z))
+                print(" AX = %7.2f m/s^2  AY = %7.2f m/s^2  AZ = %7.2f m/s^2" % (x, y, z))
 
                 # Reading gyroscope values and printing them
                 x, y, z = IMU.getGyro()
@@ -34,10 +34,9 @@ def main():
 
             except IOError:
                 print ("\nError occurred while attempting to read values.")
-
+                break
     except KeyboardInterrupt:
         print("\nCtrl+C detected. Exiting...")
-        break
 
 if __name__ == '__main__':
     main()

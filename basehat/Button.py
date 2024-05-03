@@ -1,74 +1,91 @@
-# for Button, follow this code:
-# https://github.com/Seeed-Studio/grove.py/blob/master/grove/grove_button.py
-
-# For most of these, you will simply just need to rename the class to make the name simpler.
-# You may change property namees/functions to be more consistent or easier to remember, but 
-# that is not 100% necessary all the time.
-# If you are confused on how the class works, consider changing it to be more intuitive
-# so it is also easier for students
+# Button.py
 
 # Created by Aayush Iyengar on behalf on the ENGR 16X Teaching Team
-import time
-from grove.button import Button
-from grove.factory import Factory
 
-class GroveButton:
-    '''
-    Grove Button class
+### DO NOT MODIFY CODE IN THIS FILE ###
 
-    Arguments:
-        pin ---> type: int: the number of gpio/slot your grove device connected.
-    '''
-    def __init__(self, pin):
-        #Initialize the GroveButton instance with the Button class
-        self.button = Button(pin)
-        self.last_press_time = time.time()  #Record the last press time
-        self.on_press_callback = None
-        self.on_release_callback = None
-        self.button.on_event(self.handle_event)
+from gpiozero import DigitalInputDevice
+from gpiozero import HoldMixIn
 
-    def handle_event(self, event):
-        #Take the button press and release it
-        elapsed_time = event["time"] - self.last_press_time
-        self.last_press_time = event["time"]
-        if event["code"] == Button.EV_LEVEL_CHANGED:
-            if event["pressed"] and callable(self.on_press_callback):
-                self.on_press_callback(elapsed_time)
-            elif not event["pressed"] and callable(self.on_release_callback):
-                self.on_release_callback(elapsed_time)
+class Button(HoldMixin, DigitalInputDevice):
+    """
+    Extends :class:`DigitalInputDevice` and represents a simple push button
+    or switch.
 
-    def set_on_press_callback(self, callback):
-        #Set the callback function for button press event
-        if callable(callback):
-            self.on_press_callback = callback
+    Connect one side of the button to a ground pin, and the other to any GPIO
+    pin. Alternatively, connect one side of the button to the 3V3 pin, and the
+    other to any GPIO pin, then set *pull_up* to :data:`False` in the
+    :class:`Button` constructor.
 
-    def set_on_release_callback(self, callback):
-        #Set the callback function for button release event
-        if callable(callback):
-            self.on_release_callback = callback
+    The following example will print a line of text when the button is pushed::
 
-def run_button_example():
-    #Main function to run the button example
-    pin = 5  #Assuming pin 5 for the Grove Button
+        from gpiozero import Button
 
-    button = GroveButton(pin)  #Create a GroveButton instance
+        button = Button(4)
+        button.wait_for_press()
+        print("The button was pressed!")
 
-    def on_press(elapsed_time):
-        #Callback function for button press event
-        print('Button is pressed')
+    :type pin: int or str
+    :param pin:
+        The GPIO pin which the button is connected to. See :ref:`pin-numbering`
+        for valid pin numbers. If this is :data:`None` a :exc:`GPIODeviceError`
+        will be raised.
 
-    def on_release(elapsed_time):
-        #Callback function for button release event
-        print("Button is released, pressed for {0} seconds".format(round(elapsed_time, 6)))
+    :type pull_up: bool or None
+    :param pull_up:
+        If :data:`True` (the default), the GPIO pin will be pulled high by
+        default.  In this case, connect the other side of the button to ground.
+        If :data:`False`, the GPIO pin will be pulled low by default. In this
+        case, connect the other side of the button to 3V3. If :data:`None`, the
+        pin will be floating, so it must be externally pulled up or down and
+        the ``active_state`` parameter must be set accordingly.
 
-    #Assign the callback functions to the button instance
-    button.set_on_press_callback(on_press)
-    button.set_on_release_callback(on_release)
+    :type active_state: bool or None
+    :param active_state:
+        See description under :class:`InputDevice` for more information.
 
-    #Main loop to continuously check button state
-    while True:
-        time.sleep(1)
+    :type bounce_time: float or None
+    :param bounce_time:
+        If :data:`None` (the default), no software bounce compensation will be
+        performed. Otherwise, this is the length of time (in seconds) that the
+        component will ignore changes in state after an initial change.
 
-#Run the example when this script is executed
-if __name__ == '__main__':
-    run_button_example()
+    :param float hold_time:
+        The length of time (in seconds) to wait after the button is pushed,
+        until executing the :attr:`when_held` handler. Defaults to ``1``.
+
+    :param bool hold_repeat:
+        If :data:`True`, the :attr:`when_held` handler will be repeatedly
+        executed as long as the device remains active, every *hold_time*
+        seconds. If :data:`False` (the default) the :attr:`when_held` handler
+        will be only be executed once per hold.
+
+    :type pin_factory: Factory or None
+    :param pin_factory:
+        See :doc:`api_pins` for more information (this is an advanced feature
+        which most users can ignore).
+    """
+    def __init__(self, pin=None, *, pull_up=True, active_state=None,
+                 bounce_time=None, hold_time=1, hold_repeat=False,
+                 pin_factory=None):
+        super().__init__(
+            pin, pull_up=pull_up, active_state=active_state,
+            bounce_time=bounce_time, pin_factory=pin_factory)
+        self.hold_time = hold_time
+        self.hold_repeat = hold_repeat
+
+    @property
+    def value(self):
+        """
+        Returns 1 if the button is currently pressed, and 0 if it is not.
+        """
+        return super().value
+
+
+
+Button.is_pressed = Button.is_active
+Button.pressed_time = Button.active_time
+Button.when_pressed = Button.when_activated
+Button.when_released = Button.when_deactivated
+Button.wait_for_press = Button.wait_for_active
+Button.wait_for_release = Button.wait_for_inactive

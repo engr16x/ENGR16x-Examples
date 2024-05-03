@@ -4,7 +4,7 @@
 
 ### DO NOT MODIFY CODE IN THIS FILE ###
 
-from gpiozero import LineFinder
+from gpiozero import SmoothedInputDevice
 
 class LineFinder(SmoothedInputDevice):
     """
@@ -93,5 +93,3 @@ class LineFinder(SmoothedInputDevice):
     @property
     def line_detected(self):
         return not self.is_active
-
-

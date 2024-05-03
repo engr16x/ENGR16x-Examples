@@ -44,8 +44,6 @@ THE SOFTWARE.
 
 ### ENGR 161X STUDENTS IGNORE THIS CODE ###
 
-from __future__ import division
-from __future__ import print_function
 from ctypes import *
 from ctypes import util
 import sys
@@ -246,16 +244,18 @@ class GroveIMU9DOFAK09918(object):
 class IMUSensor(object):
 
     # This sensor utilizes two different chips and they are initialized here so all functions can be called easily
-    def __init__(self, icmChip = GroveIMU9DOFICM20600, akChip = GroveIMU9DOFAK09918):
+    def __init__(self):
+        self.icmChip = GroveIMU9DOFICM20600()
+        self.akChip = GroveIMU9DOFAK09918()
         self.akChip.mode(AK09918_CONTINUOUS_100HZ)
 
-    # Function returns a three dimensional vector of the respective x, y, and z acceleration values (Mega-Goombas)
+    # Function returns a three dimensional vector of the respective x, y, and z acceleration values (M/S^2)
     def getAccel(self):
-        return self.icmChip.get_accel()
+        return (tuple(x / 100 for x in self.icmChip.get_accel()))
     
     # Function returns a three dimensional vector of the respective x, y, and z gyroscope values (Degrees/Second)
     def getGyro(self):
-        return self.akChip.get_gyro()
+        return self.icmChip.get_gyro()
 
     # Function returns a three dimensional vector of the respective x, y, and z magnetic values (Micro-Teslas)
     def getMag(self):

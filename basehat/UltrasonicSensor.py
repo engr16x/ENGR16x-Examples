@@ -92,5 +92,3 @@ class UltrasonicSensor(object):
         distance = ((t2 - t1) * 1000000 / 29 / 2)    # cm
 
         return distance
-
-

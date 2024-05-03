@@ -2,20 +2,20 @@
 
 # Created by Noah Grzegorek on behalf of the ENGR 16X Teaching Team
 
-### DO NOT MODIFY CODE IN THIS FILE ###
-
-from buildhat import motors
+from buildhat import Motor
 import time
 
 def main():
 
-    # set the pin to be used
+    # set the port to be used
     # if sensor is plugged into port A, pin should be 'A'
     # make sure to only plug in the motors to motor ports of the Grove BuildHat ('A', 'B', 'C', 'D')
-    pin = 'A'
+    port = 'A'
 
     # Initializing the motor so the functions within the class can be used
-    motor = motors(pin)
+    motor = Motor(port)
+    print("Initiating BuildHAT and motors")
+    print("this may take a while (~10 seconds)")
 
     try: 
         while True:
@@ -34,10 +34,10 @@ def main():
 
             except IOError:
                 print ("\nError occurred while attempting to read values.")
+                break
 
     except KeyboardInterrupt:
         print("\nCtrl+C detected. Exiting...")
-        break
 
 if __name__ == '__main__':
     main()

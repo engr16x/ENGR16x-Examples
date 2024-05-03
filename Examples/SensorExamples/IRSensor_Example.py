@@ -27,20 +27,20 @@ def main():
         while True:
             try: 
                 # update and read the values of the left and right infrared sensors
-                left_value = IR.valueL
-                right_value = IR.valueR
+                value1 = IR.value1
+                value2 = IR.value2
 
                 # print values
-                print("IR valueL: {}   IR valueR: {}".format(left_value, right_value))
+                print("IR value1: {}   IR value2: {}".format(value1, value2))
 
                 time.sleep(0.5)
 
             except IOError:
                 print ("\nError occurred while attempting to read values.")
-
+                break
+            
     except KeyboardInterrupt:
         print("\nCtrl+C detected. Exiting...")
-        break
 
 if __name__ == '__main__':
     main()

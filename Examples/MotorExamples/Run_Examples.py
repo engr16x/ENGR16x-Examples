@@ -5,15 +5,19 @@
 ### DO NOT MODIFY CODE IN THIS FILE ###
 
 import time
-from buildhat import motors
+from buildhat import Motor
 
 def main():
     
     # set the pin to be used
     # if sensor is plugged into port A, pin should be 'A'
     # make sure to only plug in the motors to motor ports of the Grove BuildHat ('A', 'B', 'C', 'D')
-    motor = motors('A')
-    motorb = motors('B')
+    motor = Motor('A')
+    print("Initiating BuildHAT and motors")
+    print("this may take a while (~10 seconds)")
+
+    # uncomment to use Motor B
+    # motorb = Motor('B')
 
     # Function to print the current speed, position and absolute position of the motors
     def handle_motor(speed, pos, apos):
@@ -34,8 +38,8 @@ def main():
 
                 # Leave these lines uncommented because they print the current speed, position and absolute position
                 # of the motors and set the default speed
-                motor.when_rotated = handle_motor
-                motor.set_default_speed(50)
+                #motor.when_rotated = handle_motor
+                #motor.set_default_speed(50)
 
                 # print("Run for degrees 360")
                 # motor.run_for_degrees(360)
@@ -87,10 +91,10 @@ def main():
 
             except IOError:
                 print ("\nError occurred while attempting to read values.")
+                break
 
     except KeyboardInterrupt:
         print("\nCtrl+C detected. Exiting...")
-        break
 
 if __name__ == '__main__':
     main()

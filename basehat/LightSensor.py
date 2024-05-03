@@ -34,8 +34,6 @@ Examples:
 import time, sys, math
 from grove.adc import ADC
 
-__all__ = ["GroveLightSensor"]
-
 class LightSensor(object):
     '''
     Grove Light Sensor class

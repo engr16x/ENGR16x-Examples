@@ -2,8 +2,6 @@
 
 # Created by Noah Grzegorek on behalf of the ENGR 16X Teaching Team
 
-### DO NOT MODIFY CODE IN THIS FILE ###
-
 from basehat import LineFinder
 import time
 
@@ -30,10 +28,10 @@ def main():
 
             except IOError:
                 print ("\nError occurred while attempting to read values.")
+                break
 
     except KeyboardInterrupt:
         print("\nCtrl+C detected. Exiting...")
-        break
 
 if __name__ == '__main__':
     main()

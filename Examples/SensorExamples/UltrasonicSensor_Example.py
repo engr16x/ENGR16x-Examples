@@ -31,11 +31,10 @@ def main():
 
             except IOError:
                 print ("\nError occurred while attempting to read values.")
-
+                break
 
     except KeyboardInterrupt:
         print("\nCtrl+C detected. Exiting...")
-        break
         
 
 if __name__ == '__main__':

@@ -31,17 +31,17 @@ IR Sensor:
 
         IR = IRSensor(0, 1)
     
-    IRSensor.valueL:
-        Read the value from the left sensor. If your sensor's name is 'IR', accessing the left
+    IRSensor.value1:
+        Read the value from the sensor labeled sensor1. If your sensor's name is 'IR', accessing the left
         value will look like this:
 
-        value_from_left_sensor = IR.valueL
+        value_from_sensor1 = IR.value1
 
-    IRSensor.valueR:
-        Read the value from the right sensor. If your sensor's name is 'IR', accessing the right
+    IRSensor.value2:
+        Read the value from the sensor labeled sensor2. If your sensor's name is 'IR', accessing the right
         value will look like this:
 
-        value_from_right_sensor = IR.valueR
+        value_from_sensor2 = IR.value2
     
     IRSensor_Example.py: 
         Usage of this code is demonstrated in the example file for this sensor in the Examples
@@ -49,10 +49,6 @@ IR Sensor:
 '''
 
 ### DO NOT MODIFY CODE BELOW THIS LINE ###
-
-# original code for comparison:
-# adapted from light sensor code:
-# https://github.com/Seeed-Studio/grove.py/blob/master/grove/grove_light_sensor_v1_2.py
 
 from grove.adc import ADC
 
@@ -69,7 +65,7 @@ class IRSensor(object):
         self.adc = ADC()
 
     @property
-    def valueL(self):
+    def value1(self):
         '''
         Get the infrared strength value, maximum value is 999
 
@@ -80,7 +76,7 @@ class IRSensor(object):
         return value
 
     @property
-    def valueR(self):
+    def value2(self):
         '''
         Get the infrared strength value, maximum value is 999
 
