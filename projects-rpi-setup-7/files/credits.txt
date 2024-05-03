@@ -1,0 +1,37 @@
+
+
+===========================================================
+               ______              ___ __       
+              / ____/_______  ____/ (_) /______ 
+             / /   / ___/ _ \/ __  / / __/ ___/ 
+            / /___/ /  /  __/ /_/ / / /_(__  )  
+            \____/_/   \___/\__,_/_/\__/____/   
+                                                
+===========================================================
+
+engrOS v7.0 build May 2024
+
+Originally Created by the pi_development team:
+    Nick Masso
+    Mark Hartigan
+    Trevor Ladner
+    Braden Barale
+    Robert Murphy
+    Tomo Shinagawa
+
+Desktop background designed by:
+    Owen Johnson
+
+Based on earlier work by:
+    Trevor Meyer
+    Nicky Marino
+    Maddie Henderson
+
+Adapted for BuildHAT, Grove BaseHAT, and Raspberry Pi 4 by:
+    Seth McConkey
+    Noah Grzegorek
+    Aayush Iyengar
+
+Thank you to professors Tim Whalen, and 
+Sean Brophy, and Joe Lyon for running this class - and for always 
+making sure that the students' learning comes first.

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Donut
+Comment=Frosted Donut
+Icon=/home/pi/Desktop/source_files/Icons/donut.ico
+Exec=lxterminal -t "Frosted Donut" -e sudo /home/pi/Desktop/source_files/donut.sh
+Type=Application
+Encoding=UTF-8
+Terminal=false
+Categories=None;

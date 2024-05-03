@@ -1,0 +1,5 @@
+[Added Associations]
+text/x-python=idle-python3.7.desktop;
+
+[Default Applications]
+text/x-python=idle-python3.7.desktop

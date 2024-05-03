@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Update BrickPi3 Firmware
+Comment=Will Flash the BrickPi3 firmware to the board.
+Icon=/home/pi/Desktop/source_files/Icons/dexter.ico
+Exec=lxterminal -t "Update BrickPi3 Firmware" -e sudo /home/pi/Desktop/source_files/firmware_update_brickpi3.sh
+Type=Application
+Encoding=UTF-8
+Terminal=false
+Categories=None;

