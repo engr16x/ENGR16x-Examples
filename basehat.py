@@ -1,3 +1,6 @@
+from __future__ import division
+from __future__ import print_function
+
 # UltrasonicSensor.py
 
 # Created by Noah Grzegorek on behalf of the ENGR 16X Teaching Team
@@ -388,8 +391,6 @@ THE SOFTWARE.
 
 ### ENGR 161X STUDENTS IGNORE THIS CODE ###
 
-from __future__ import division
-from __future__ import print_function
 from ctypes import *
 from ctypes import util
 import sys
