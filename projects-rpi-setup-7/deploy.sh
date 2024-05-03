@@ -135,6 +135,7 @@ echo
 echo "Removing necessary file permissions"
 sudo python3 /home/pi/$FOLDERNAME/setup_files/20_removePermissions.py
 
+# might be causing errors
 sudo raspi-config --expand-rootfs
 
 
@@ -151,6 +152,8 @@ sudo chmod 755 ./engr16x_wifi_setup.sh
 
 echo
 echo "Setting up team $tNum pi $PINUM"
+
+# needs to be changed from the dhcpcd protocol to NetworkManager protocol 
 sudo $setup_path/engr16x_wifi_setup.sh $tNum $PINUM
 
 
