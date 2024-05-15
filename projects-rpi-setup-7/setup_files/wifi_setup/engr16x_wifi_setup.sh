@@ -43,33 +43,19 @@ echo "Updating team number in all files"
 sudo python3 ./updateTeamNumber.py $teamNumber $piNumber
 
 echo "Stopping dnsmasq service before applying changes"
+sudo systemctl disable dnsmasq
 sudo systemctl stop dnsmasq
 
-echo "Stopping hostapd service before applying changes"
-sudo systemctl stop hostapd
-
-echo "Updating dhcp server config file to assign static ip address"
-sudo python3 ./dhcpcd.conf.py
-
-echo "Restarting dhcpd service to apply changes"
-sudo service dhcpcd restart
+echo "Adding pi wifi connection"
+sudo chmod +x ./addWifiConnection
+sudo ./addWifiConnection
 
 echo "Configuring dhcp server to assign client ip addresses"
 sudo python3 ./dnsmasq.conf.py
 
-echo "Configuring Access Point Settings"
-echo "Creating file to set  access point attributes"
-sudo cp ./hostapd.conf /etc/hostapd/hostapd.conf
-
-echo "Setting the previously made configuration file to be used during configuration"
-sudo python3 ./hostapd.py
-
 echo "Splitting Wifi channel"
 sudo chmod +x ./randomize_channel.sh
 sudo ./randomize_channel.sh
-
-echo "Starting up hostapd service with new settings"
-sudo systemctl start hostapd
 
 echo "Starting up dnsmasq service with new settings"
 sudo systemctl start dnsmasq
@@ -114,7 +100,8 @@ sudo iptables -S
 #echo
 #echo
 
-sudo update-rc.d hostapd enable
+# Might still need this?
+# sudo update-rc.d hostapd enable
 
 # we dont need this i think
 #sudo update-rc.d isc-dhcp-server enable

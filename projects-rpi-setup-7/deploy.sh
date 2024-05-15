@@ -143,10 +143,6 @@ echo
 echo "Beginning Wifi setup"
 echo
 
-sudo systemctl unmask hostapd
-sudo systemctl enable hostapd
-sudo systemctl start hostapd
-
 cd $setup_path
 sudo chmod 755 ./engr16x_wifi_setup.sh
 
