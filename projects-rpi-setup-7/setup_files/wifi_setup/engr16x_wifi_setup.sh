@@ -47,7 +47,7 @@ sudo systemctl disable dnsmasq
 sudo systemctl stop dnsmasq
 
 echo "Adding pi wifi connection"
-sudo chmod +x ./addWifiConnection
+sudo chmod +x ./addWifiConnection.sh
 sudo ./addWifiConnection
 
 echo "Configuring dhcp server to assign client ip addresses"
