@@ -1,9 +1,8 @@
-filename = '/etc/dnsmasq.conf'
+filename = '/etc/NetworkManager/system-connections/pi_wifi.nmconnection'
 
 replace = [[]]
 
-append = ['interface=wlan0',
-          '    dhcp-range=192.168.REPLACEWITHTEAMNUMBER.10,192.168.REPLACEWITHTEAMNUMBER.50,255.255.255.0,24h' ]
+append = 'address1=192.168.REPLACEWITHTEAMNUMBER.10,192.168.REPLACEWITHTEAMNUMBER.50'
 
 ####################  Main Porgram  ####################
 
@@ -19,8 +18,10 @@ newfile = []
 
 with open(filename, 'r') as file:
 
-  for line in append:
+  for line in file:
     newfile.append(str(line + '\n'))
+    if(line.strip() == 'method=shared'):
+      newfile.append(append)
 
 with open(filename, 'w') as file:
   for line in newfile:

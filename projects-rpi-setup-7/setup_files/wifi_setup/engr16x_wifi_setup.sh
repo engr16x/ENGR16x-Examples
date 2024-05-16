@@ -50,15 +50,12 @@ echo "Adding pi wifi connection"
 sudo chmod +x ./addWifiConnection.sh
 sudo ./addWifiConnection.sh
 
-echo "Configuring dhcp server to assign client ip addresses"
-sudo python3 ./dnsmasq.conf.py
+echo "Assign client ip addresses"
+sudo python3 ./clientIp.py
 
 echo "Splitting Wifi channel"
 sudo chmod +x ./randomize_channel.sh
 sudo ./randomize_channel.sh
-
-echo "Starting up dnsmasq service with new settings"
-sudo systemctl start dnsmasq
 
 echo "Configuring settings to accept ethernet internet connection"
 echo "Setting IP forwarding"
