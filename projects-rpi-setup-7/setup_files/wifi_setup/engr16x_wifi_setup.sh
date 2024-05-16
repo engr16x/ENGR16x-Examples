@@ -48,7 +48,7 @@ sudo systemctl stop dnsmasq
 
 echo "Adding pi wifi connection"
 sudo chmod +x ./addWifiConnection.sh
-sudo ./addWifiConnection
+sudo ./addWifiConnection.sh
 
 echo "Configuring dhcp server to assign client ip addresses"
 sudo python3 ./dnsmasq.conf.py
