@@ -1,3 +1,4 @@
+sudo nmcli c delete pi_wifi
 sudo nmcli c add type wifi ifname wlan0 mode ap con-name pi_wifi ssid team_REPLACEWITHTEAMNUMBER_piREPLACEWITHPINUMBER
 sudo nmcli c mod pi_wifi 802-11-wireless.band bg
 sudo nmcli c mod pi_wifi 802-11-wireless.channel 1
