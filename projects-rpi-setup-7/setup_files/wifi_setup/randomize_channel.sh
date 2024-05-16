@@ -16,7 +16,6 @@ let "randomIdx = random % 3"
 let "c = channels[randomIdx]"
 
 echo "Setting new channel to:" $c
-sudo sed 's/channel=.*/channel='$c'/g' /etc/hostapd/hostapd.conf
-sudo sed -i 's/channel=.*/channel='$c'/g' /etc/hostapd/hostapd.conf
+sudo nmcli c mod pi_wifi 802-11-wireless.channel $c
 
 
