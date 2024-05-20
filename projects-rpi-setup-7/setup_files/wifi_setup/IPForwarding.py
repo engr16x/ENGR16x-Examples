@@ -1,4 +1,4 @@
-filename = '/proc/sys/net/ipv4/ip_forwarding'
+filename = '/proc/sys/net/ipv4/ip_forward'
 
 ####################  Main Porgram  ####################
 
