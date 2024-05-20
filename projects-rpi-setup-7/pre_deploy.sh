@@ -17,6 +17,9 @@ echo "Installing and uninstalling requirenents"
 # Generic dependencies
 sudo apt-get install samba libncurses5 default-jdk xrdp dnsmasq hostapd libffi-dev libatlas-base-dev -y
 
+#IPTables for network things
+sudo apt-get install iptables -y
+
 # stuff that is in the grove.py deb dependencies
 sudo apt-get install --no-install-recommends -y git libi2c-dev i2c-tools  \
     python3-setuptools python3-pip python3-smbus python3-dev python3-serial python3-rpi.gpio python3-numpy python3-scipy
@@ -79,6 +82,7 @@ cd $CALLDIR/setup_files
 sudo python3 01_config.py
 sudo python3 01_modules.py
 sudo python3 01_raspi-blacklist.py
+sudo python3 01_allow_update.py
 
 
 echo "Changing XRDP settings"

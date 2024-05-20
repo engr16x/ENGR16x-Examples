@@ -59,7 +59,7 @@ sudo ./randomize_channel.sh
 
 echo "Configuring settings to accept ethernet internet connection"
 echo "Setting IP forwarding"
-sudo python3 ./sysctl.conf.py
+sudo python3 ./IPForwarding.py
 
 echo "Creating network translation between the ethernet port and the wifi drivers"
 sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
