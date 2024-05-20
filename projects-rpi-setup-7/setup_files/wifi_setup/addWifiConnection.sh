@@ -8,5 +8,6 @@ sudo nmcli c mod pi_wifi 802-11-wireless-security.group ccmp
 sudo nmcli c mod pi_wifi 802-11-wireless-security.psk raspberry
 sudo nmcli c mod pi_wifi ipv4.method shared
 sudo nmcli c mod pi_wifi ipv4.addresses 192.168.REPLACEWITHTEAMNUMBER.REPLACEWITHPINUMBER/24
+sudo nmcli c mod pi_wifi ipv6.method ignore
 sudo nmcli c up pi_wifi
 
