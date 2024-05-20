@@ -1,4 +1,4 @@
-filename = '/etc/polkit-1/localauthority/50-local.d'
+filename = '/etc/polkit-1/localauthority/50-local.d/46-allow-update-repo.pkla'
 
 append = ['[Allow Package Management all Users]',
           'Identity=unix-user:*',
@@ -16,13 +16,12 @@ from shutil import copyfile
 
 if not(os.path.isfile(str(filename + '.orig'))):
   copyfile(filename, str(filename + '.orig'))
-else:
+elif os.path.isfile(str(filename)):
   copyfile(str(filename + '.orig'), filename)
 
-newfile = []
 
 with open(filename, 'w') as file:
-  for line in newfile:
+  for line in append:
     file.write(line)
 
 copyfile(filename, str(filename + '.bak'))
