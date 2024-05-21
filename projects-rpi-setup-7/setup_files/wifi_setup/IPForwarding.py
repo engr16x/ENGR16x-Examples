@@ -5,10 +5,10 @@ filename = '/proc/sys/net/ipv4/ip_forward'
 import os
 from shutil import copyfile
 
-if not(os.path.isfile(str(filename + '.orig'))):
-  copyfile(filename, str(filename + '.orig'))
-else:
-  copyfile(str(filename + '.orig'), filename)
+# if not(os.path.isfile(str(filename + '.orig'))):
+#   copyfile(filename, str(filename + '.orig'))
+# else:
+#   copyfile(str(filename + '.orig'), filename)
 
 newfile = []
 

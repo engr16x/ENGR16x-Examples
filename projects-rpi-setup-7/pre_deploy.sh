@@ -241,8 +241,8 @@ cd $CALLDIR/setup_files
 echo "Making the desktop bg change script executable"
 sudo chmod 755 ./21_changeBackground.sh
 
-echo "Making source files executable"
-python3 ./03_makeSourceFilesExecutable.py
+# echo "Making source files executable"
+# python3 ./03_makeSourceFilesExecutable.py
 
 cd $CALLDIR/setup_files
 
