@@ -13,15 +13,6 @@ import os
 import sys
 from shutil import copyfile
 
-
-if not(os.path.isfile(str(filename + '.orig'))):
-  copyfile(filename, str(filename + '.orig'))
-elif os.path.isfile(str(filename)):
-  copyfile(str(filename + '.orig'), filename)
-
-
 with open(filename, 'w') as file:
   for line in append:
     file.write(line)
-
-copyfile(filename, str(filename + '.bak'))
