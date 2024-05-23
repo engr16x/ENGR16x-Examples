@@ -1,11 +1,11 @@
 filename = '/etc/polkit-1/localauthority/50-local.d/46-allow-update-repo.pkla'
 
-append = ['[Allow Package Management all Users]',
-          'Identity=unix-user:*',
-          'Action=org.freedesktop.packagekit.system-sources-refresh',
-          'ResultAny=yes',
-          'ResultInactive=yes',
-          'ResultActive=yes']
+append = ['[Allow Package Management all Users]\n',
+          'Identity=unix-user:*\n',
+          'Action=org.freedesktop.packagekit.system-sources-refresh\n',
+          'ResultAny=yes\n',
+          'ResultInactive=yes\n',
+          'ResultActive=yes\n']
 
 ####################  Main Porgram  ####################
 
@@ -15,4 +15,4 @@ from shutil import copyfile
 
 with open(filename, 'w') as file:
   for line in append:
-    file.write(line)
+    file.write(str(line))
