@@ -10,32 +10,40 @@
 #
 # This is the library for Grove Base Hat which used to connect grove sensors for raspberry pi.
 #
-
 '''
-## License
+Ultrasonic Sensor:
+    Description:
+        This sensor can be used to determine the distance between the sensor and a surface in 
+        front of it. This is done by emitting high frequecy sound and then detecting the reflected 
+        sound, using the delay between transmission and reception to calculate the distance. This
+        sensor outputs a distance in centimeters, with an accurate range between 3 cm and 350 cm.
 
-The MIT License (MIT)
+    Hardware:
+        Connect this sensor to any analog port on the Grove BaseHAT: A0, A2, A4, or A6.
+        Initialize the sensor using only the number of the port, DO NOT include the A.
+        
+        More info:
+        https://wiki.seeedstudio.com/Grove_Base_Hat_for_Raspberry_Pi/
+        https://www.seeedstudio.com/Grove-Ultrasonic-Ranger-p-960.html
+    
+    Initialization:
+        sensor_name = UltrasonicSensor(pin)
 
-Grove Base Hat for the Raspberry Pi, used to connect grove sensors.
-Copyright (C) 2018  Seeed Technology Co.,Ltd. 
+        If you plug your Ultrasonic Sensor into A0 and want to name it 'ultra', your initialization 
+        will look like this:
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+        ultra = UltrasonicSensor(0)
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+    UltrasonicSensor.getDist:
+        Read the value from the sensor, outputting the measured distance in cm. If your sensor's 
+        name is 'ultra', accessing this value will look like this:
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+        dist = ultra.getDist
+
+    UltrasonicSensor_Example.py: 
+        Usage of this code is demonstrated in the example file for this sensor in the Examples
+        folder on your Pi's desktop.
+        
 '''
 
 import sys

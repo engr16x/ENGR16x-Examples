@@ -20,6 +20,3 @@ echo 9
 sudo nmcli c mod pi_wifi ipv4.addresses 192.168.REPLACEWITHTEAMNUMBER.REPLACEWITHPINUMBER/24
 echo 10
 sudo nmcli c mod pi_wifi ipv6.method ignore
-echo 11
-sudo nmcli c up pi_wifi
-echo 12

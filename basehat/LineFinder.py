@@ -4,70 +4,65 @@
 
 ### DO NOT MODIFY CODE IN THIS FILE ###
 
+'''
+
+Grove Line Finder:
+    Description:
+        This sensor outputs whether it is being pointed at a black surface or a white surface,
+        representing this digitally as a 0 for black or a 1 for white. The threshold for 
+        determining this can be adjusted using a small screwdrive. This can be used to determine
+        whether or not the sensor is over a line.
+
+    Hardware:
+        The line finder connects to digital pins on the Grove BaseHAT (any port starting with a D)
+        Initialize the sensor using only the number of the port (do not includ the D)
+
+        More info:
+        https://wiki.seeedstudio.com/Grove_Base_Hat_for_Raspberry_Pi/
+        https://wiki.seeedstudio.com/Grove-Line_Finder/
+    
+    Initialization:
+       sensor_name = LineFinder(pin)
+
+        If you plug your line finder into D5 and want to name it 'lineFinder', your initialization 
+        will look like this:
+
+        lineFinder = LineFinder(5)
+
+    LineFinder.value:
+        Returns a 1 when the sensor is over something white and 0 when it is over something black.
+        If your sensor's name is 'lineFinder', accessing this value will look like this:
+       
+         value_from_finder = lineFinder.value
+
+    LineFinder.line_detected:
+        Returns False when the sensor is over something white and True when it is over something black.        
+        If your sensor's name is 'lineFinder', accessing this value will look like this:
+
+        is_line = lineFinder.line_detected
+    
+
+    LineFinder_Example.py: 
+        Usage of this code is demonstrated in the example file for this sensor in the Examples
+        folder on your Pi's desktop.
+
+'''
+
+### DO NOT MODIFY CODE BELOW THIS LINE ###
+
 from gpiozero import SmoothedInputDevice
 
 class LineFinder(SmoothedInputDevice):
     """
-    Extends :class:`SmoothedInputDevice` and represents a single pin line
-    sensor like the TCRT5000 infra-red proximity sensor found in the `CamJam #3
-    EduKit`_.
+    Simple Line Finder Class
 
-    A typical line sensor has a small circuit board with three pins: VCC, GND,
-    and OUT. VCC should be connected to a 3V3 pin, GND to one of the ground
-    pins, and finally OUT to the GPIO specified as the value of the *pin*
-    parameter in the constructor.
+    Args:
+        pin(int): the digital pin to which the line finder is assigned
+        pull_up(bool): whether the button is set to pull up or down. This impacts whether the 
+            button returns a 0 or 1 when pressed and must be set to false for the wiring setup of 
+            the base hat.
+        sample_rate(float): The number of values to read from the device per second. Defaults to 100.
 
-    The following code will print a line of text indicating when the sensor
-    detects a line, or stops detecting a line::
-
-        from gpiozero import LineSensor
-        from signal import pause
-
-        sensor = LineSensor(4)
-        sensor.when_line = lambda: print('Line detected')
-        sensor.when_no_line = lambda: print('No line detected')
-        pause()
-
-    :type pin: int or str
-    :param pin:
-        The GPIO pin which the sensor is connected to. See :ref:`pin-numbering`
-        for valid pin numbers. If this is :data:`None` a :exc:`GPIODeviceError`
-        will be raised.
-
-    :type pull_up: bool or None
-    :param pull_up:
-        See description under :class:`InputDevice` for more information.
-
-    :type active_state: bool or None
-    :param active_state:
-        See description under :class:`InputDevice` for more information.
-
-    :param int queue_len:
-        The length of the queue used to store values read from the sensor. This
-        defaults to 5.
-
-    :param float sample_rate:
-        The number of values to read from the device (and append to the
-        internal queue) per second. Defaults to 100.
-
-    :param float threshold:
-        Defaults to 0.5. When the average of all values in the internal queue
-        rises above this value, the sensor will be considered "active" by the
-        :attr:`~SmoothedInputDevice.is_active` property, and all appropriate
-        events will be fired.
-
-    :param bool partial:
-        When :data:`False` (the default), the object will not return a value
-        for :attr:`~SmoothedInputDevice.is_active` until the internal queue has
-        filled with values.  Only set this to :data:`True` if you require
-        values immediately after object construction.
-
-    :type pin_factory: Factory or None
-    :param pin_factory:
-        See :doc:`api_pins` for more information (this is an advanced feature
-        which most users can ignore).
-
-    .. _CamJam #3 EduKit: http://camjam.me/?page_id=1035
     """
     def __init__(self, pin=None, *, pull_up=False, active_state=None,
                  queue_len=1, sample_rate=100, threshold=0.5, partial=False,

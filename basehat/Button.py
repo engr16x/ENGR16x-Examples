@@ -3,67 +3,100 @@
 # Created by Aayush Iyengar on behalf on the ENGR 16X Teaching Team
 
 ### DO NOT MODIFY CODE IN THIS FILE ###
+'''
+Button:
+    Description:
+        This is a very simple sensor, representing whether the button has been pressed or not 
+        using a digital output, with a 1 denoting the button being pressed and a 0 representing 
+        it being unpressed. Functions can also be used to determine not only the state of the button
+        but also when the button is pressed or released.
+
+    Hardware:
+        The button connects to digital pins on the Grove BaseHAT (any port starting with a D)
+        Initialize the sensor using only the number of the port (do not includ the D)
+        
+        More info:
+        https://wiki.seeedstudio.com/Grove_Base_Hat_for_Raspberry_Pi/
+        https://wiki.seeedstudio.com/Grove-Button/ 
+    
+    Initialization:
+        button_name = Button(pin)
+
+        If you plug your button into D5 and want to name it 'button' your initialization will
+        look like this:
+
+        button = Button(5)
+
+    Button.value:
+        Read the value of the button, returning a 1 if pressed and a 0 if not. If your button's 
+        name is 'button', accessing this value will look like this:
+
+        value_from_button = button.value
+
+    Button.is_pressed:
+        Returns whether the button is currently pressed as a boolean. If your button's name is
+        'button', accessing this value will look like this:
+
+        is_button_pressed = button.is_pressed
+    
+    Button.pressed_time:
+        Returns the total length of time for which the butten has been pressed, or 'None' if it
+        is not currently pressed. If your button's name is 'button', accessing this value will 
+        look like this:
+
+        press_length = button.pressed_time
+
+    Button.when_pressed:
+        This parameter stores a function that will automatically be run upon the button being
+        pressed. If your button's name is 'button' and you want the function 'on_press()' to 
+        be run each time it is pressed, assigning this would look like this:
+
+        button.when_pressed = on_press
+
+        An example of this being used can be seen in Button_Example.py
+
+    Button.when_released:
+        This parameter stores a function that will automatically be run upon the button being
+        released. If your button's name is 'button' and you want the function 'on_release()' to 
+        be run each time it is released, assigning this would look like this:
+
+        button.when_released = on_release
+
+        An example of this being used can be seen in Button_Example.py
+    
+    Button.wait_for_press():
+        This function will pause the code that is running until the button is pressed. If your 
+        button's name is 'button', employing this funciton would look like this:
+
+        button.wait_for_press()
+
+    Button.wait_for_release():
+        This function will pause the code that is running until the button is released. If your 
+        button's name is 'button', employing this funciton would look like this:
+
+        button.wait_for_release()
+    
+    Button_Example.py: 
+        Usage of this code is demonstrated in the example file for this sensor in the Examples
+        folder on your Pi's desktop.
+'''
 
 from gpiozero import DigitalInputDevice
 from gpiozero import HoldMixIn
 
 class Button(HoldMixin, DigitalInputDevice):
     """
-    Extends :class:`DigitalInputDevice` and represents a simple push button
-    or switch.
+    Simple Button Class
 
-    Connect one side of the button to a ground pin, and the other to any GPIO
-    pin. Alternatively, connect one side of the button to the 3V3 pin, and the
-    other to any GPIO pin, then set *pull_up* to :data:`False` in the
-    :class:`Button` constructor.
-
-    The following example will print a line of text when the button is pushed::
-
-        from gpiozero import Button
-
-        button = Button(4)
-        button.wait_for_press()
-        print("The button was pressed!")
-
-    :type pin: int or str
-    :param pin:
-        The GPIO pin which the button is connected to. See :ref:`pin-numbering`
-        for valid pin numbers. If this is :data:`None` a :exc:`GPIODeviceError`
-        will be raised.
-
-    :type pull_up: bool or None
-    :param pull_up:
-        If :data:`True` (the default), the GPIO pin will be pulled high by
-        default.  In this case, connect the other side of the button to ground.
-        If :data:`False`, the GPIO pin will be pulled low by default. In this
-        case, connect the other side of the button to 3V3. If :data:`None`, the
-        pin will be floating, so it must be externally pulled up or down and
-        the ``active_state`` parameter must be set accordingly.
-
-    :type active_state: bool or None
-    :param active_state:
-        See description under :class:`InputDevice` for more information.
-
-    :type bounce_time: float or None
-    :param bounce_time:
-        If :data:`None` (the default), no software bounce compensation will be
-        performed. Otherwise, this is the length of time (in seconds) that the
-        component will ignore changes in state after an initial change.
-
-    :param float hold_time:
-        The length of time (in seconds) to wait after the button is pushed,
-        until executing the :attr:`when_held` handler. Defaults to ``1``.
-
-    :param bool hold_repeat:
-        If :data:`True`, the :attr:`when_held` handler will be repeatedly
-        executed as long as the device remains active, every *hold_time*
-        seconds. If :data:`False` (the default) the :attr:`when_held` handler
-        will be only be executed once per hold.
-
-    :type pin_factory: Factory or None
-    :param pin_factory:
-        See :doc:`api_pins` for more information (this is an advanced feature
-        which most users can ignore).
+    Args:
+        pin(int): the digital pin to which the button is assigned
+        pull_up(bool): whether the button is set to pull up or down. This impacts whether the 
+            button returns a 0 or 1 when pressed and must be set to false for the wiring setup of 
+            the base hat.
+        bounce_time(float): The length of time (in seconds) after the button is presse during which 
+            new inputs are ignored. This minimizeds 'bouncy' signals, where the output of the button
+            changes rapidly as it is being pressed. The base time for this is 1 second.
+   
     """
     def __init__(self, pin=None, *, pull_up=True, active_state=None,
                  bounce_time=None, hold_time=1, hold_repeat=False,

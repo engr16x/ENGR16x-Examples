@@ -4,33 +4,42 @@
 
 ### DO NOT MODIFY CODE IN THIS FILE ###
 
-# -*- coding: utf-8 -*-
-#
-# The MIT License (MIT)
-#
-# Grove Base Hat for the Raspberry Pi, used to connect grove sensors.
-# Copyright (C) 2018  Seeed Technology Co.,Ltd.
 '''
-This is the code for
-    - `Grove - Light Sensor <https://www.seeedstudio.com/Grove-Light-Sensor-v1.2-p-2727.html>`_
+        proportional to the amount of infrared rays the left sensor is reading, and a value 
+Light Sensor:
+    Description:
+        This sensor converts the light level at the bulb shaped detector into a voltage 
+        which can then be read as an integer representing the total brightness.
 
-Examples:
+    Hardware:
+        Connect this sensor to any analog port on the Grove BaseHAT: A0, A2, A4, or A6.
+        Initialize the sensor using only the number of the port, DO NOT include the A.
+        
+        More info:
+        https://wiki.seeedstudio.com/Grove_Base_Hat_for_Raspberry_Pi/
+        https://wiki.seeedstudio.com/Grove-Light_Sensor/
+    
+    Initialization:
+        sensor_name = LightSensor(pin)
 
-    .. code-block:: python
+        If you plug your light sensor into A0 and want to name it 'light', your initialization 
+        will look like this:
 
-        import time
-        from grove.grove_light_sensor import GroveLightSensor
+        light = LightSensor(0)
 
-        # connect to alalog pin 2(slot A2)
-        PIN = 2
+    LightSensor.light:
+        Read the value from the light sensor, ranging from 0 to ~615. If your sensor name is 
+        'light', accessing the light value will look like this:
 
-        sensor = GroveLightSensor(pin)
-
-        print('Detecting light...')
-        while True:
-            print('Light value: {0}'.format(sensor.light))
-            time.sleep(1)
+        value_from_sensor = light.light
+    
+    LightSensor_Example.py: 
+        Usage of this code is demonstrated in the example file for this sensor in the Examples
+        folder on your Pi's desktop.
+        
 '''
+
+### DO NOT MODIFY CODE BELOW THIS LINE ###
 import time, sys, math
 from grove.adc import ADC
 

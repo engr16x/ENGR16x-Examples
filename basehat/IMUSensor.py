@@ -4,43 +4,76 @@
 
 ### DO NOT MODIFY CODE IN THIS FILE ###
 
-# This is the code for Grove - IMU 9DOF (ICM20600+AK09918).
-# (https://www.seeedstudio.com/Grove-IMU-9DOF-ICM20600-AK0991-p-3157.html)
-# which is 9 Degrees of Freedom IMU (Inertial measurement unit) with
-# gyroscope, accelerometer and electronic compass, implemented by
-# two chips LCM20600 and AK09918.
-#
-# Author: Peter Yang <turmary@126.com>
-#
-# Grove.py is the library for Grove Base Hat which used to
-# connect grove sensors for raspberry pi.
-#
 '''
-## License
+Inertial Measurement Unit (IMU):
+    Description:
+        This sensor is an IMU with 9 degrees of freedom, including a gyroscope, acclerometer,
+        and electronic compass. This sensor can thus be used to read the acceleration
+        (in meters per second squared), angular velocity (in degrees per second), and magnetic 
+        field strength (in Micro-teslas). Each of these is formatted as a vector with values 
+        along each access.
 
-The MIT License (MIT)
+    Hardware:
+        Connect this sensor to any I2C port on the Grove BaseHat
+        
+        More info:
+        https://wiki.seeedstudio.com/Grove_Base_Hat_for_Raspberry_Pi/
+        https://www.seeedstudio.com/Grove-IMU-9DOF-ICM20600-AK0991-p-3157.html
+    
+    Initialization:
+        IMU_name = IMUSensor()
 
-Grove Base Hat for the Raspberry Pi, used to connect grove sensors.
-Copyright (C) 2018  Seeed Technology Co.,Ltd. 
+        This initialization does not accept a port number and it does not matter which I2C port 
+        is used.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+    getAccel():
+        This function returns the current acceleration of the IMU along all 3 axes in M/S^2. This
+        vector is output in the form of a tuple. If your IMU's name is 'IMU', acceleration as three
+        seperate values looks like this:
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+        x_accel, y_accel, z_accel = IMU.getAccel()
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+    getGyro():
+        This function returns the current angular rate of the IMU along all 3 axes in degrees/s. This
+        vector is output in the form of a tuple. If your IMU's name is 'IMU', angular speed as three
+        seperate values looks like this:
+
+        x_gyro, y_gyro, z_gyro = IMU.getGyro()
+
+    getMag():
+        This function returns the current magnetic field strength at the IMU along all 3 axes in 
+        micro-tesla This vector is output in the form of a tuple. If your IMU's name is 'IMU',
+        magnetic field strength as three seperate values looks like this:
+
+        x_mag, y_mag, z_mag = IMU.getMag()
+    
+    IMUSensor_Example.py: 
+        Usage of this code is demonstrated in the example file for this sensor in the Examples
+        folder on your Pi's desktop.
+        
 '''
+### IMPORTANT CODE FOR ENGR 161X STUDENTS ###
+
+# Class combining all sensor functionality into one class for ease of use
+class IMUSensor(object):
+
+    # This sensor utilizes two different chips and they are initialized here so all functions can be called easily
+    def __init__(self):
+        self.icmChip = GroveIMU9DOFICM20600()
+        self.akChip = GroveIMU9DOFAK09918()
+        self.akChip.mode(AK09918_CONTINUOUS_100HZ)
+
+    # Function returns a three dimensional vector of the respective x, y, and z acceleration values (M/S^2)
+    def getAccel(self):
+        return (tuple(x / 100 for x in self.icmChip.get_accel()))
+    
+    # Function returns a three dimensional vector of the respective x, y, and z gyroscope values (Degrees/Second)
+    def getGyro(self):
+        return self.icmChip.get_gyro()
+
+    # Function returns a three dimensional vector of the respective x, y, and z magnetic values (Micro-Teslas)
+    def getMag(self):
+        return self.akChip.get_magnet()
 
 ### ENGR 161X STUDENTS IGNORE THIS CODE ###
 
@@ -234,29 +267,3 @@ class GroveIMU9DOFAK09918(object):
 
     def err_string(self, errval):
         return _akicm.rpi_ak09918_err_string(errval)
-
-### END OF CODE TO IGNORE FOR 161X STUDENTS ###
-
-
-### IMPORTANT CODE FOR ENGR 161X STUDENTS ###
-
-# Class combining all sensor functionality into one class for ease of use
-class IMUSensor(object):
-
-    # This sensor utilizes two different chips and they are initialized here so all functions can be called easily
-    def __init__(self):
-        self.icmChip = GroveIMU9DOFICM20600()
-        self.akChip = GroveIMU9DOFAK09918()
-        self.akChip.mode(AK09918_CONTINUOUS_100HZ)
-
-    # Function returns a three dimensional vector of the respective x, y, and z acceleration values (M/S^2)
-    def getAccel(self):
-        return (tuple(x / 100 for x in self.icmChip.get_accel()))
-    
-    # Function returns a three dimensional vector of the respective x, y, and z gyroscope values (Degrees/Second)
-    def getGyro(self):
-        return self.icmChip.get_gyro()
-
-    # Function returns a three dimensional vector of the respective x, y, and z magnetic values (Micro-Teslas)
-    def getMag(self):
-        return self.akChip.get_magnet()

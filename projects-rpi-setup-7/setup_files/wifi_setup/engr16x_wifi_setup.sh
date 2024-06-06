@@ -74,6 +74,11 @@ echo "Checking what's in the IP tables: "
 sudo iptables -t nat -S
 sudo iptables -S
 
+
+echo "Starting pi wifi connection"
+sudo chmod +x ./startWifiConnection.sh
+sudo ./startWifiConnection.sh
+
 # This may mess up the ethernet forwarding, commenting it out for now
 # echo
 # echo "Testing the Access Point now"

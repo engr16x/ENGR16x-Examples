@@ -23,7 +23,7 @@ def main():
                 # update and read the values of the motor
                 speed = motor.get_speed()
                 absPosition = motor.get_aposition()
-                position = motor.get.get_position()
+                position = motor.get_position()
 
                 # print values
                 print("Motor speed: {}".format(speed))

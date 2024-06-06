@@ -74,7 +74,7 @@ echo
 echo "Removing any existing Account Structure"
 sudo deluser $instAcct
 echo "Creating instructor account: $instAcct"
-sudo adduser $instAcct --disabled-login --gecos "$instAcct,0,0,0"
+sudo adduser $instAcct --gecos "$instAcct,0,0,0" #--disabled-login --gecos "$instAcct,0,0,0"
 echo "Changing $instAcct account password..."
 echo "$instAcct:honors1234" | chpasswd
 echo "Adding sudo access"
@@ -91,10 +91,21 @@ sudo adduser $instAcct spi
 sudo adduser $instAcct dialout
 sudo adduser $instAcct gpio
 sudo adduser $instAcct input
-sudo chown root.gpio /dev/mem
+sudo chown root:gpio /dev/mem
 sudo chmod g+rw /dev/mem
 sudo chmod -R 4777 /home/$instAcct/Desktop/"UPDATE FILES"
 sudo /home/pi/$FOLDERNAME/setup_files/21_changeBackground.sh $instAcct
+sudo cp -r /home/pi/.config/Thonny /home/$instAcct/.config
+echo 
+echo
+echo "THIS IS THE TEST"
+echo
+echo
+sudo chmod 777 /home/$instAcct/.config/Thonny/backend.log
+sudo chmod 777 /home/$instAcct/.config/Thonny/frontend_faults.log
+sudo chmod 777 /home/$instAcct/.config/Thonny/leave_this_empty
+sudo chmod 777 /home/$instAcct/.config/Thonny/configuration.ini
+sudo chmod 777 /home/$instAcct/.config/Thonny/frontend.log
 
 
 
@@ -107,7 +118,7 @@ do
   sudo deluser $account
   sudo rm -r /home/$account
   echo "Creating $account account"
-  sudo adduser $account --disabled-login --gecos "$account,0,0,0"
+  sudo adduser $account --gecos "$account,0,0,0"  #--disabled-login --gecos "$account,0,0,0"
   echo "Changing $account account password"
   echo "$account:$account" | chpasswd
   echo "Adding reboot, shutdown, and poweroff sudo access"
@@ -124,10 +135,16 @@ do
   sudo adduser $account dialout
   sudo adduser $account gpio
   sudo adduser $account input
-  sudo chown root.gpio /dev/mem
+  sudo chown root:gpio /dev/mem
   sudo chmod g+rw /dev/mem
   sudo chmod -R 4755 /home/$account/Desktop/"UPDATE FILES"
   sudo /home/pi/$FOLDERNAME/setup_files/21_changeBackground.sh $account
+  sudo cp -r /home/pi/.config/Thonny /home/$account/.config
+  sudo chmod 777 /home/$account/.config/Thonny/backend.log
+  sudo chmod 777 /home/$account/.config/Thonny/frontend_faults.log
+  sudo chmod 777 /home/$account/.config/Thonny/leave_this_empty
+  sudo chmod 777 /home/$account/.config/Thonny/configuration.ini
+  sudo chmod 777 /home/$account/.config/Thonny/frontend.log
 done
 
 
@@ -149,7 +166,6 @@ sudo chmod 755 ./engr16x_wifi_setup.sh
 echo
 echo "Setting up team $tNum pi $PINUM"
 
-# needs to be changed from the dhcpcd protocol to NetworkManager protocol 
 sudo $setup_path/engr16x_wifi_setup.sh $tNum $PINUM
 
 

@@ -46,6 +46,7 @@ IR Sensor:
     IRSensor_Example.py: 
         Usage of this code is demonstrated in the example file for this sensor in the Examples
         folder on your Pi's desktop.
+        
 '''
 
 ### DO NOT MODIFY CODE BELOW THIS LINE ###

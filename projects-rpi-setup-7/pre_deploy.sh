@@ -13,9 +13,9 @@ echo "Apt updating and upgrading"
 sudo apt-get update --allow-releaseinfo-change-suite
 sudo apt-get upgrade -y
 
-echo "Installing and uninstalling requirenents"
+echo "Installing and uninstalling requirements"
 # Generic dependencies
-sudo apt-get install samba libncurses5 default-jdk xrdp dnsmasq hostapd libffi-dev libatlas-base-dev -y
+sudo apt-get install samba libncurses5 default-jdk xrdp dnsmasq hostapd libffi-dev libatlas-base-dev pcmanfm -y
 
 #IPTables for network things
 sudo apt-get install iptables -y
@@ -82,7 +82,10 @@ cd $CALLDIR/setup_files
 sudo python3 01_config.py
 sudo python3 01_modules.py
 sudo python3 01_raspi-blacklist.py
+echo "Modifiying Update Permission"
 sudo python3 01_allow_update.py
+echo "Modifying Wifi Permission"
+sudo python3 01_allow_wifi_scan.py
 
 
 echo "Changing XRDP settings"
@@ -139,6 +142,14 @@ echo "Setting up file structure to sync with github update repositories"
 
 mkdir /home/pi/Desktop/updates
 cd /home/pi/Desktop/updates
+
+echo "Setting up Thonny"
+sudo cp -r /home/pi/$FOLDERNAME/Thonny /home/pi/.config/Thonny
+  sudo chmod 777 /home/pi/.config/Thonny/backend.log
+  sudo chmod 777 /home/pi/.config/Thonny/frontend_faults.log
+  sudo chmod 777 /home/pi/.config/Thonny/leave_this_empty
+  sudo chmod 777 /home/pi/.config/Thonny/configuration.ini
+  sudo chmod 777 /home/pi/.config/Thonny/frontend.log
 
 echo
 echo "Setting up projects-updates/boat"
@@ -241,8 +252,8 @@ cd $CALLDIR/setup_files
 echo "Making the desktop bg change script executable"
 sudo chmod 755 ./21_changeBackground.sh
 
-# echo "Making source files executable"
-# python3 ./03_makeSourceFilesExecutable.py
+echo "Making source files executable"
+python3 ./03_makeSourceFilesExecutable.py
 
 cd $CALLDIR/setup_files
 
