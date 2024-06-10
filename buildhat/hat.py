@@ -1,3 +1,5 @@
+### DO NOT MODIFY CODE IN THIS FILE ###
+### THIS CODE IS NOT RELEVENT TO 16X STUDENTS ###
 """HAT handling functionality"""
 
 from concurrent.futures import Future

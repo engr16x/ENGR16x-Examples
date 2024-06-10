@@ -2,6 +2,10 @@
 
 # Created by Noah Grzegorek on behalf of the ENGR 16X Teaching Team
 
+# More info and instruction on using this sensor can be found in the buildhat folder
+# on your Pi's Desktop 
+
+# import the necessary packages for your sensor and code
 import time
 from buildhat import Motor
 

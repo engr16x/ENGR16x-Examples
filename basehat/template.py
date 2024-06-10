@@ -1,3 +1,5 @@
+### DO NOT MODIFY CODE IN THIS FILE ###
+### THIS CODE IS NOT RELEVENT TO 16X STUDENTS ###
 # [Name of Module]
 
 # Created by [your name] on behalf of the ENGR 16X Teaching Team

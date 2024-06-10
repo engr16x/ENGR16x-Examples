@@ -27,6 +27,8 @@ then
 
   echo "Enter the pi number:"
   read PINUM
+  hostname="team-$tNum-$PINUM"
+
   
 elif [ $TYPE == "m" ]
 then
@@ -41,6 +43,7 @@ then
     echo "Enter the account names to set up: (Press [Enter] if all are entered"
     read acct
   done
+  hostname="kit-$tNum-$acct"
   PINUM=1
   
 else
@@ -124,6 +127,7 @@ do
   echo "Adding reboot, shutdown, and poweroff sudo access"
   echo "$account ALL=NOPASSWD: /sbin/reboot, /sbin/shutdown, /sbin/poweroff" | sudo EDITOR='tee -a' visudo
   echo "$account ALL=NOPASSWD: /home/pi/Desktop/source_files/*" | sudo EDITOR='tee -a' visudo
+  # echo "$account ALL=NOPASSWD: /usr/bin/nmcli/* | sudo EDITOR='tee -a' visudo
   echo "Creating Desktop"
   sudo mkdir /home/$account/Desktop
   sudo cp -r /home/pi/Desktop/new_desktop/. /home/$account/Desktop/
@@ -167,6 +171,10 @@ echo
 echo "Setting up team $tNum pi $PINUM"
 
 sudo $setup_path/engr16x_wifi_setup.sh $tNum $PINUM
+
+echo "Changing hostname to $hostname"
+sudo python3 /home/pi/projects-rpi-setup-7/setup_files/05_changeHostname_deploy.py $hostname
+
 
 
 cd ~

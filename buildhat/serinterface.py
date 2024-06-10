@@ -1,3 +1,6 @@
+### DO NOT MODIFY CODE IN THIS FILE ###
+### THIS CODE IS NOT RELEVENT TO 16X STUDENTS ###
+
 """Build HAT handling functionality"""
 
 import logging

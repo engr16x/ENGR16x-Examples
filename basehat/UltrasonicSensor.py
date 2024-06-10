@@ -3,13 +3,6 @@
 # Created by Noah Grzegorek on behalf of the ENGR 16X Teaching Team
 
 ### DO NOT MODIFY CODE IN THIS FILE ###
-
-# This is the code for Grove - Ultrasonic Ranger
-# (https://www.seeedstudio.com/Grove-Ultrasonic-Ranger-p-960.html)
-# which is a non-contact distance measurement module which works with 40KHz sound wave. 
-#
-# This is the library for Grove Base Hat which used to connect grove sensors for raspberry pi.
-#
 '''
 Ultrasonic Sensor:
     Description:
