@@ -130,6 +130,7 @@ mkdir /home/pi/Desktop/new_desktop/basehat
 cp -r /home/pi/ENGR16x-Examples/basehat/. /home/pi/Desktop/new_desktop/basehat
 mkdir /home/pi/Desktop/new_desktop/buildhat
 cp -r /home/pi/ENGR16x-Examples/buildhat/. /home/pi/Desktop/new_desktop/buildhat
+cp -r $CALLDIR/files/source_files/. /home/pi/Desktop/source_files/
 
 # copy all of the classes to PATH so that from basebat import * can be used
 sudo cp /home/pi/ENGR16x-Examples/basehat.py /usr/local/lib/python3.11/dist-packages/basehat.py
