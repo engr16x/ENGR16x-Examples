@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Download Projects Resources
-Comment=Will download support files for Projects
-Icon=/home/pi/Desktop/source_files/Icons/DownloadProjects.ico
-Exec=lxterminal -t "Change Account Password" -e sudo /home/pi/Desktop/source_files/download_projects_resources.sh
-Type=Application
-Encoding=UTF-8
-Terminal=false
-Categories=None;

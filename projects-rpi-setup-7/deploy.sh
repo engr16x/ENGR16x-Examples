@@ -99,19 +99,14 @@ sudo chmod g+rw /dev/mem
 sudo chmod -R 4777 /home/$instAcct/Desktop/"UPDATE FILES"
 sudo /home/pi/$FOLDERNAME/setup_files/21_changeBackground.sh $instAcct
 sudo cp -r /home/pi/.config/Thonny /home/$instAcct/.config
-echo 
-echo
-echo "THIS IS THE TEST"
-echo
-echo
+# sudo cp -r /home/pi/Desktop/source_files/. /home/$instAcct/Desktop/source_files/
 sudo chmod 777 /home/$instAcct/.config/Thonny/backend.log
 sudo chmod 777 /home/$instAcct/.config/Thonny/frontend_faults.log
 sudo chmod 777 /home/$instAcct/.config/Thonny/leave_this_empty
 sudo chmod 777 /home/$instAcct/.config/Thonny/configuration.ini
 sudo chmod 777 /home/$instAcct/.config/Thonny/frontend.log
 
-
-
+echo ${TEAMNUMS[@]}
 for account in ${TEAMNUMS[@]}
 do
   echo
@@ -121,13 +116,16 @@ do
   sudo deluser $account
   sudo rm -r /home/$account
   echo "Creating $account account"
-  sudo adduser $account --gecos "$account,0,0,0"  #--disabled-login --gecos "$account,0,0,0"
+  sudo adduser $account --gecos "$account,0,0,0"
   echo "Changing $account account password"
   echo "$account:$account" | chpasswd
   echo "Adding reboot, shutdown, and poweroff sudo access"
+  # echo "$instAcct ALL=(ALL) ALL" | sudo EDITOR='tee -a' visudo
+  # echo "$instAcct ALL=NOPASSWD: /home/pi/Desktop/source_files/*" | sudo EDITOR='tee -a' visudo
+  # echo "$instAcct ALL=NOPASSWD: /sbin/reboot, /sbin/shutdown, /sbin/poweroff" | sudo EDITOR='tee -a' visudo
   echo "$account ALL=NOPASSWD: /sbin/reboot, /sbin/shutdown, /sbin/poweroff" | sudo EDITOR='tee -a' visudo
   echo "$account ALL=NOPASSWD: /home/pi/Desktop/source_files/*" | sudo EDITOR='tee -a' visudo
-  # echo "$account ALL=NOPASSWD: /usr/bin/nmcli/* | sudo EDITOR='tee -a' visudo
+  echo "$account ALL=NOPASSWD: /usr/bin/nmcli/*" | sudo EDITOR='tee -a' visudo
   echo "Creating Desktop"
   sudo mkdir /home/$account/Desktop
   sudo cp -r /home/pi/Desktop/new_desktop/. /home/$account/Desktop/
@@ -144,6 +142,7 @@ do
   sudo chmod -R 4755 /home/$account/Desktop/"UPDATE FILES"
   sudo /home/pi/$FOLDERNAME/setup_files/21_changeBackground.sh $account
   sudo cp -r /home/pi/.config/Thonny /home/$account/.config
+  # sudo cp -r /home/pi/Desktop/source_files/. /home/$account/Desktop/source_files/
   sudo chmod 777 /home/$account/.config/Thonny/backend.log
   sudo chmod 777 /home/$account/.config/Thonny/frontend_faults.log
   sudo chmod 777 /home/$account/.config/Thonny/leave_this_empty

@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Download DC Resources
-Comment=Will download support files for design challenges
-Icon=/home/pi/Desktop/source_files/Icons/DownloadDC.ico
-Exec=lxterminal -t "Change Account Password" -e sudo /home/pi/Desktop/source_files/download_dc_resources.sh
-Type=Application
-Encoding=UTF-8
-Terminal=false
-Categories=None;

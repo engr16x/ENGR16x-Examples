@@ -1,4 +1,5 @@
-folderpath="/home/pi/projects-rpi-setup-7/source_files"
+# folderpath="/home/pi/projects-rpi-setup-7/source_files"
+folderpath="/home/pi/Desktop/source_files"
 
 import os
 

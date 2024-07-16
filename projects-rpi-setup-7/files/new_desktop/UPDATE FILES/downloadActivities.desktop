@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Download Activity Resources
-Comment=Will download support files for in-class activities
-Icon=/home/pi/Desktop/source_files/Icons/DownloadActivities.ico
-Exec=lxterminal -t "Change Account Password" -e sudo /home/pi/Desktop/source_files/download_activity_resources.sh
-Type=Application
-Encoding=UTF-8
-Terminal=false
-Categories=None;

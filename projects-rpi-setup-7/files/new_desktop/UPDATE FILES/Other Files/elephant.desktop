@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Elephant
-Comment=Giant Elephant
-Icon=/home/pi/Desktop/source_files/Icons/elephant.ico
-Exec=lxterminal -t "Giant Elephant" -e sudo /home/pi/Desktop/source_files/elephant.sh
-Type=Application
-Encoding=UTF-8
-Terminal=false
-Categories=None;
