@@ -169,12 +169,10 @@ sudo chmod 755 ./engr16x_wifi_setup.sh
 echo
 echo "Setting up team $tNum pi $PINUM"
 
-sudo $setup_path/engr16x_wifi_setup.sh $tNum $PINUM
-
 echo "Changing hostname to $hostname"
 sudo python3 /home/pi/projects-rpi-setup-7/setup_files/05_changeHostname_deploy.py $hostname
 
-
+sudo $setup_path/engr16x_wifi_setup.sh $tNum $PINUM
 
 cd ~
 
