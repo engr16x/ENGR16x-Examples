@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Duck
-Comment=Rubber Duck
-Icon=/home/pi/Desktop/source_files/Icons/duck.ico
-Exec=lxterminal -t "Rubber Duck" -e sudo /home/pi/Desktop/source_files/duck.sh
-Type=Application
-Encoding=UTF-8
-Terminal=false
-Categories=None;
