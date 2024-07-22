@@ -146,11 +146,11 @@ cd /home/pi/Desktop/updates
 
 echo "Setting up Thonny"
 sudo cp -r /home/pi/$FOLDERNAME/Thonny /home/pi/.config/Thonny
-  sudo chmod 777 /home/pi/.config/Thonny/backend.log
-  sudo chmod 777 /home/pi/.config/Thonny/frontend_faults.log
-  sudo chmod 777 /home/pi/.config/Thonny/leave_this_empty
-  sudo chmod 777 /home/pi/.config/Thonny/configuration.ini
-  sudo chmod 777 /home/pi/.config/Thonny/frontend.log
+sudo chmod 777 /home/pi/.config/Thonny/backend.log
+sudo chmod 777 /home/pi/.config/Thonny/frontend_faults.log
+sudo chmod 777 /home/pi/.config/Thonny/leave_this_empty
+sudo chmod 777 /home/pi/.config/Thonny/configuration.ini
+sudo chmod 777 /home/pi/.config/Thonny/frontend.log
 
 echo
 echo "Setting up projects-updates/boat"
