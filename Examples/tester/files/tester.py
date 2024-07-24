@@ -23,12 +23,14 @@ if __name__ == "__main__":
                 testresults.append(IR_Test())
                 testresults.append(Button_Test())
                 testresults.append(Motor_Test())
+                motor = Motor('A')
+                motor.stop()
+                print("\nTest Results:")
+                for result in testresults:
+                    time.sleep(.5)
+                    result = list(result)
+                    print(f"{result[0]}: {result[1]}")
 
-                printresults(testresults)
-
-                while True:
-                        if KeyboardInterrupt:
-                                sys.exit
 
         except KeyboardInterrupt:
                 sys.exit()
