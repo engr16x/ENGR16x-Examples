@@ -28,7 +28,7 @@ def main():
                 value = Hall.value
 
                 # print value
-                print("Hall value: {}".format(value1))
+                print("Hall value: {}".format(value))
 
                 time.sleep(0.5)
 

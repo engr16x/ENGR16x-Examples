@@ -7,12 +7,13 @@
 '''
 Hall Sensor:
     Description:
-        This sensor has only one value that can be accessed: a value from 0 to 999 that is 
-        dependent on the strength of magnetic field present at the sensor. 
+        This sensor has only one value that can be accessed: a digital value of either 0 or 1 that is 
+        dependent on the strength of magnetic field present at the sensor. The sensor outputs a 1 when 
+        a strong magnetic field is detected
 
     Hardware:
-        Connect this sensor to any analog port on the Grove BaseHAT: A0, A2, A4, or A6.
-        Initialize the sensor using only the number of the port, DO NOT include the A.
+        The hall sensor connects to digital pins on the Grove BaseHAT (any port starting with a D)
+        Initialize the sensor using only the number of the port (do not include the D)
         
         More info:
         https://wiki.seeedstudio.com/Grove_Base_Hat_for_Raspberry_Pi/
@@ -23,10 +24,10 @@ Hall Sensor:
 
         sensor_name = HallSensor(pin)
 
-        If you plug your Hall Sensor into A0 and want to name it 'Hall', your initialization will
+        If you plug your Hall Sensor into D5 and want to name it 'Hall', your initialization will
         look like this:
 
-        Hall = HallSensor(0)
+        Hall = HallSensor(5)
     
     HallSensor.value:
         Read the value from the sensor. If your sensor's name is 'Hall', accessing the value will
@@ -43,25 +44,32 @@ Hall Sensor:
 
 ### DO NOT MODIFY CODE BELOW THIS LINE ###
 
-from grove.adc import ADC
+from gpiozero import DigitalInputDevice
+from gpiozero import HoldMixIn
 
-class HallSensor(object):
-    '''
-    Hall Sensor class
+class HallSensor(HoldMixin, DigitalInputDevice):
+    """
+    Simple Hall Sensor Class
 
     Args:
-        pin(int): number of the analog pin the sensor is connected to.
-    '''
-    def __init__(self, pin):
-        self.pin = pin
-        self.adc = ADC()
+        pin(int): the digital pin to which the sensor is assigned
+        pull_up(bool): whether the sensor is set to pull up or down. This impacts whether the 
+            sensor returns a 0 or 1 when near a magnet and must be set to false for the wiring 
+            setup of the base hat.
+        bounce_time(float): The length of time (in seconds) after the button is presse during which 
+            new inputs are ignored. This minimizeds 'bouncy' signals, where the output of the button
+            changes rapidly as it is being pressed. The base time for this is 1 second.
+   
+    """
+    def __init__(self, pin=None, *, pull_up=True, active_state=None,
+                 bounce_time=None, pin_factory=None):
+        super().__init__(
+            pin, pull_up=pull_up, active_state=active_state,
+            bounce_time=bounce_time, pin_factory=pin_factory)
 
     @property
     def value(self):
-        '''
-        Get the magnetic strength value, maximum value is 999, with lower values representing stronger mangetic fields
-        Returns:
-            (int): ratio, 0 - 999
-        '''
-        value = self.adc.read(self.port)
-        return value
+        """
+        Returns 1 if the button is currently pressed, and 0 if it is not.
+        """
+        return super().value
