@@ -776,10 +776,10 @@ class HallSensor(object):
     Hall Sensor class
 
     Args:
-        pin(int): number of the analog pin the sensor is connected to.
+        port(int): number of the analog pin the sensor is connected to.
     '''
-    def __init__(self, pin):
-        self.pin = pin
+    def __init__(self, port):
+        self.port = port
         self.adc = ADC()
 
     @property
