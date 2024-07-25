@@ -14,7 +14,7 @@ def main():
     # set the pin to be used
     # if sensor is plugged into port A0, pin1 should be 0
     # make sure to only plug in Hall Sensor to analog ports of the Grove BaseHAT (A0, A2, A4, A6)
-    pin = 0
+    pin = 5
 
     # initialize the sensor by naming the class instance and setting the pins to use
     # 'Hall' is the name of the instance, pin is the pin being used

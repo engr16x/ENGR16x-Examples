@@ -17,6 +17,7 @@ from printresults import *
 
 if __name__ == "__main__":
         try:
+            #plug the IMU into I2C, Ultrasonic into D22, IR into A0, Button into D5, and motor into port A
                 testresults = []
                 testresults.append(IMU_Test())
                 testresults.append(Ultrasonic_Test())
