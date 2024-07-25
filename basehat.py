@@ -771,7 +771,7 @@ Hall Sensor:
 ### DO NOT MODIFY CODE BELOW THIS LINE ###
 
 from gpiozero import DigitalInputDevice
-from gpiozero import HoldMixIn
+from gpiozero import HoldMixin
 
 class HallSensor(HoldMixin, DigitalInputDevice):
     """
