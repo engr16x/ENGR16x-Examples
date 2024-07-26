@@ -37,11 +37,13 @@ then
 
   echo "Enter the account names to set up (traditionally section_X):"
   read acct
+  TEAMNUMS+=($acct)
+
   while [ "$acct" != "" ]
   do
-    TEAMNUMS+=($acct)
     echo "Enter the account names to set up: (Press [Enter] if all are entered"
     read acct
+    TEAMNUMS+=($acct)
   done
   hostname= $acct
   PINUM=1
@@ -173,7 +175,7 @@ then
   echo "Setting up team $tNum pi $PINUM"
   sudo $setup_path/engr16x_wifi_setup.sh $tNum $PINUM
 else
-  echo "Setting up kit $tNum
+  echo "Setting up kit $tNum"
   sudo $setup_path/engr16x_wifi_setup_kit.sh $tNum
 fi
 
