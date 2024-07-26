@@ -45,7 +45,7 @@ then
     read acct
     TEAMNUMS+=($acct)
   done
-  hostname= $acct
+  hostname= "kit-$tNum"
   PINUM=1
   
 else
