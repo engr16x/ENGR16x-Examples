@@ -45,7 +45,7 @@ then
     read acct
     TEAMNUMS+=($acct)
   done
-  hostname= "kit-$tNum"
+  hostname="kit-$tNum"
   PINUM=1
   
 else
@@ -167,6 +167,7 @@ echo
 
 cd $setup_path
 sudo chmod 755 ./engr16x_wifi_setup.sh
+sudo chmod 755 ./engr16x_wifi_setup_kit.sh
 
 echo
 
