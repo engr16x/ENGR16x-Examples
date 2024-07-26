@@ -43,7 +43,7 @@ then
     echo "Enter the account names to set up: (Press [Enter] if all are entered"
     read acct
   done
-  hostname="$acct"
+  hostname= $acct
   PINUM=1
   
 else
@@ -167,15 +167,15 @@ cd $setup_path
 sudo chmod 755 ./engr16x_wifi_setup.sh
 
 echo
-echo "Setting up team $tNum pi $PINUM"
 
 if [ $TYPE == "t" ]
 then
+  echo "Setting up team $tNum pi $PINUM"
   sudo $setup_path/engr16x_wifi_setup.sh $tNum $PINUM
 else
-  
+  echo "Setting up kit $tNum
+  sudo $setup_path/engr16x_wifi_setup_kit.sh $tNum
 fi
-sudo $setup_path/engr16x_wifi_setup_kit.sh $tNum
 
 echo "Changing hostname to $hostname"
 sudo python3 /home/pi/projects-rpi-setup-7/setup_files/05_changeHostname_deploy.py $hostname
