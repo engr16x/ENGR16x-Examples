@@ -14,7 +14,7 @@ def main():
     # set the pin to be used
     # if sensor is plugged into port D5, pin1 should be 5
     # make sure to only plug in Ultrasonic Sensor to digital ports of the Grove BaseHAT (D5, D16, D18, D22, D24, D26)
-    pin = 22
+    pin = 5
 
     # Initializing the sensor so the function within the class can be used
     ultra = UltrasonicSensor(pin)
