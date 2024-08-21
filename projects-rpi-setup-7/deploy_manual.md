@@ -23,7 +23,7 @@ Flash the sd card with the engr16x_v7.0 disk image. See the "Flashing an SD card
     
     Using putty, the host name is `engr.local`
     
-5.  Log in as the `pi` user. The password is `raspberry`
+5.  Log in as the `pi` user. The password is `honors1234Admin`
 
     If the terminal says something about 
     
