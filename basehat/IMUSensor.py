@@ -27,7 +27,7 @@ Inertial Measurement Unit (IMU):
         is used.
 
     getAccel():
-        This function returns the current acceleration of the IMU along all 3 axes in M/S^2. This
+        This function returns the current acceleration of the IMU along all 3 axes in gs. This
         vector is output in the form of a tuple. If your IMU's name is 'IMU', acceleration as three
         seperate values looks like this:
 
