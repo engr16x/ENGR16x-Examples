@@ -12,8 +12,8 @@ import time
 def main():
 
     # set the pin to be used
-    # if sensor is plugged into port A0, pin1 should be 0
-    # make sure to only plug in Hall Sensor to analog ports of the Grove BaseHAT (A0, A2, A4, A6)
+    # if sensor is plugged into port D5, pin should be 5
+    # make sure to only plug in Hall Sensor to digital ports of the Grove BaseHAT (D5, D16, D18, D22, D24, D26)
     pin = 5
 
     # initialize the sensor by naming the class instance and setting the pins to use
