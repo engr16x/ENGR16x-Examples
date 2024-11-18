@@ -24,7 +24,7 @@ Lego Motor:
         left_motor = Motor('A')
 
     Motor.start(speed (optional)):
-        This function can be used to begin runnign a motor. The speed, ranging from -100 to 100,
+        This function can be used to begin running a motor. The speed, ranging from -100 to 100,
         can be set here, but if not input is given it will use default_speed.
 
     Motor.stop()
@@ -35,30 +35,50 @@ Lego Motor:
         to 100 as a proportion of the maximum speed of the motor. This is automatically set 
         to 20.
 
-    Motor.run_for_rotations(rotations, speed (optional)):
+    Motor.run_for_rotations(rotations, speed (optional), blocking (optional)):
         This function can be used to run the motor for a set number of revolutions. The speed,
         ranging from -100 to 100, can be set here, but if no input is given it will use 
-        default_speed. 
+        default_speed. One can also set whether this function has blocking. This is a 
+        boolean value which is true if it is not set at the function call. While true,
+        blocking is enabled, meaning that the next line of code will not be run until
+        the motor has finished running for the required number of rotations. If blocking 
+        is false, the next line of code will immediately be run while the motor is 
+        turning.
 
-    Motor.run_for_degrees(degrees, speed (optional)):
+    Motor.run_for_degrees(degrees, speed (optional), blocking (optional)):
         This function can be used to run the motor for a set number of degrees. The speed,
         ranging from -100 to 100, can be set here, but if no input is given it will use 
-        default_speed. 
+        default_speed. One can also set whether this function has blocking. This is a 
+        boolean value which is true if it is not set at the function call. While true,
+        blocking is enabled, meaning that the next line of code will not be run until
+        the motor has finished running for the required number of degrees. If blocking 
+        is false, the next line of code will immediately be run while the motor is 
+        turning.
 
-    Motor.run_to_position(degrees, speed (optional), direction (optional)):
+    Motor.run_to_position(degrees, speed (optional), blocking (optional), direction (optional)):
         This function can be used to run the motor to a set position in degrees, ranging from -180 
         to 180. The speed, ranging from -100 to 100, can be set here, but if no input is given it 
         will use default_speed. The direction taken by the motor can also be set, with 'shortest'
-        as the default and 'clockwise' and 'anticlockwise' being other options.
+        as the default and 'clockwise' and 'anticlockwise' being other options. One can also set 
+        whether this function has blocking. This is a boolean value which is true if it is not 
+        set at the function call. While true, blocking is enabled, meaning that the next line of 
+        code will not be run until the motor has finished running to the desired position. If 
+        blocking is false, the next line of code will immediately be run while the motor is 
+        turning.
 
-    Motor.run_for_seconds(seconds, speed(optional)):
+    Motor.run_for_seconds(seconds, speed(optional), blocking(optional)):
         This function can be used to run the motor for a set length of time. The speed,
         ranging from -100 to 100, can be set here, but if no input is given it will use 
-        default_speed. 
+        default_speed. One can also set whether this function has blocking. This is a 
+        boolean value which is true if it is not set at the function call. While true,
+        blocking is enabled, meaning that the next line of code will not be run until
+        the motor has finished running for the required number of seconds. If blocking 
+        is false, the next line of code will immediately be run while the motor is 
+        turning.
 
     Motor.get_position():
         Returns the current position of the motor, in degrees, relative to some starting position.
-        This can be either positive or negative and is not limited in value.
+        This can be either positive or negative and is not limited in value. 
     
     Motor.get_apostition():
         Returns the current absolute position of the motors, in degrees, in terms of a single rotation. 
