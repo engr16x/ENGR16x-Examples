@@ -8,6 +8,7 @@ HOSTNAME="engr"
 
 # making deploy executable
 sudo chmod 755 ./deploy.sh
+sudo chmod 755 ./clear_account.sh
 
 echo "Apt updating and upgrading"
 sudo apt-get update --allow-releaseinfo-change-suite
@@ -114,11 +115,6 @@ echo
 echo "Copying newdesktop directory to pi desktop"
 cp -r $CALLDIR/files/new_desktop/. /home/pi/Desktop/new_desktop/
 
-
-# Currently don't have access to the ENGR16x GitHub 
-# Eventually, this repository linked to my personal account needs to be 
-# forked to the official ENGR16x GitHub account, and then this script needs 
-# to be changed to pull from the new repository under the official account
 cd /home/pi/
 # clone the Examples repository (copy the code)
 git clone https://github.com/engr16x/ENGR16x-Examples.git
