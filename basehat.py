@@ -474,13 +474,13 @@ class GroveIMU9DOFICM20600(object):
     def __init__(self, addr = ICM20600_I2C_ADDR1):
         self._dev = _akicm.rpi_icm20600_alloc()
         dev_path = "/dev/i2c-{}".format(Bus().bus)
-        icm20600_cfg = ICM20600Cfg(ICM20600_RANGE_2K_DPS,
-                                ICM20600_GYRO_RATE_1K_BW_176,
+        icm20600_cfg = ICM20600Cfg(ICM20600_RANGE_500_DPS,
+                                ICM20600_GYRO_RATE_1K_BW_92,
                                 ICM20600_GYRO_AVERAGE_1,
-                                ICM20600_RANGE_16G,
-                                ICM20600_ACC_RATE_1K_BW_420,
-                                ICM20600_ACC_AVERAGE_4,
-                                ICM20600_ICM_6AXIS_LOW_POWER,
+                                ICM20600_RANGE_8G,
+                                ICM20600_ACC_RATE_1K_BW_218,
+                                ICM20600_ACC_AVERAGE_8,
+                                ICM20600_ICM_6AXIS_LOW_NOISE,
 				0)
 
         dev_path = dev_path.encode('utf-8') # SEED STUDIO SHOULD HIRE SETH MCCONKEY
