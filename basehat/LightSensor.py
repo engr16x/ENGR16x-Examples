@@ -5,7 +5,6 @@
 ### DO NOT MODIFY CODE IN THIS FILE ###
 
 '''
-        proportional to the amount of infrared rays the left sensor is reading, and a value 
 Light Sensor:
     Description:
         This sensor converts the light level at the bulb shaped detector into a voltage 
