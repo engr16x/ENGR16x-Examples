@@ -167,7 +167,7 @@ class GroveIMU9DOFICM20600(object):
                                 ICM20600_GYRO_AVERAGE_1,
                                 ICM20600_RANGE_8G,
                                 ICM20600_ACC_RATE_1K_BW_218,
-                                ICM20600_ACC_AVERAGE_8,
+                                ICM20600_ACC_AVERAGE_4,
                                 ICM20600_ICM_6AXIS_LOW_NOISE,
 				0)
 
