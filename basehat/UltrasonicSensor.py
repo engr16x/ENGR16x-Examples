@@ -13,7 +13,7 @@ Ultrasonic Sensor:
 
     Hardware:
         Connect this sensor to any digital port on the Grove BaseHAT (any port starting with D)
-        Initialize the sensor using only the number of the port, DO NOT include the A.
+        Initialize the sensor using only the number of the port, DO NOT include the D.
         
         More info:
         https://wiki.seeedstudio.com/Grove_Base_Hat_for_Raspberry_Pi/
@@ -22,10 +22,10 @@ Ultrasonic Sensor:
     Initialization:
         sensor_name = UltrasonicSensor(pin)
 
-        If you plug your Ultrasonic Sensor into A0 and want to name it 'ultra', your initialization 
+        If you plug your Ultrasonic Sensor into D5 and want to name it 'ultra', your initialization 
         will look like this:
 
-        ultra = UltrasonicSensor(0)
+        ultra = UltrasonicSensor(5)
 
     UltrasonicSensor.getDist:
         Read the value from the sensor, outputting the measured distance in cm. If your sensor's 

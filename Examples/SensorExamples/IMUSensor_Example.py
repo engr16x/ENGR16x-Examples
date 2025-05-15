@@ -19,7 +19,7 @@ def main():
             try:
                 # Reading acceleration values and printing them
                 x, y, z = IMU.getAccel()
-                print(" AX = %7.2f gs  AY = %7.2f gs  AZ = %7.2f gs" % (x, y, z))
+                print(" AX = %7.2f m/s^2  AY = %7.2f m/s^2  AZ = %7.2f m/s^2" % (x, y, z))
 
                 # Reading gyroscope values and printing them
                 x, y, z = IMU.getGyro()
