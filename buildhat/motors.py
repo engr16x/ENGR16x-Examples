@@ -137,24 +137,6 @@ class Motor(Device):
         self.when_rotated = None
         self._oldpos = None
         self._runmode = MotorRunmode.NONE
-
-    def run_power(self, speed=None):
-        self._wait_for_nonblocking()
-        if self._runmode == MotorRunmode.PWM:
-            if self._currentspeed == speed:
-                # Already running at this speed, do nothing
-                return
-        elif self._runmode != MotorRunmode.NONE:
-            return
-        if speed is None:
-            speed = self.default_speed
-        elif not (speed >= -100 and speed <= 100):
-            raise MotorError("Invalid Speed")
-        speed = speed / 100
-        cmd = f"port {self.port}; pwm; set {speed}\r"
-        self._runmode = MotorRunmode.PWM
-        self._currentspeed = speed
-        self._write(cmd)
     
     def start(self, speed=None):
         """Start motor
@@ -610,7 +592,6 @@ class MotorRunmode(Enum):
     FREE = 1
     DEGREES = 2
     SECONDS = 3
-    PWM = 4
 
 
 class MotorPair:
