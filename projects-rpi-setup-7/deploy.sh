@@ -181,7 +181,7 @@ else
 fi
 
 echo "Changing hostname to $hostname"
-sudo python3 /home/pi/projects-rpi-setup-7/setup_files/05_changeHostname_deploy.py $hostname
+sudo python3 /home/pi/projects-rpi-setup-7/setup_files/05_new_ChangeHostname.py $hostname
 
 
 

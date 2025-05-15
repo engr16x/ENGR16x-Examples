@@ -12,7 +12,7 @@ Ultrasonic Sensor:
         sensor outputs a distance in centimeters, with an accurate range between 3 cm and 350 cm.
 
     Hardware:
-        Connect this sensor to any analog port on the Grove BaseHAT: A0, A2, A4, or A6.
+        Connect this sensor to any digital port on the Grove BaseHAT (any port starting with D)
         Initialize the sensor using only the number of the port, DO NOT include the A.
         
         More info:

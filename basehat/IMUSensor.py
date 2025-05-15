@@ -171,7 +171,7 @@ class GroveIMU9DOFICM20600(object):
                                 ICM20600_ICM_6AXIS_LOW_POWER,
 				0)
 
-        dev_path = dev_path.encode('utf-8') # SEED STUDIO SHOULD HIRE SETH MCCONKEY
+        dev_path = dev_path.encode('utf-8')
 
         _akicm.rpi_icm20600_init(self._dev,
                              dev_path,
