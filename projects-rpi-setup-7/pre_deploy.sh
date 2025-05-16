@@ -39,6 +39,12 @@ cd grove.py
 # build the code from the repository
 sudo pip3 install . --break-system-packages
 cd /home/pi
+
+git clone https://github.com/engr16x/python-build-hat.git
+cd python-build-hat.git
+sudo pip3 install . --break-system-packages
+cd /home/pi
+
 # install dependencies for the IMU
 git clone https://github.com/turmary/bmi088-python.git
 cd bmi088-python
@@ -50,9 +56,6 @@ cd ..
 
 # remove unecessary directories (folders)
 rm -rf bmi088-python 
-
-# install BuildHAT library
-sudo pip3 install buildhat --break-system-packages
 
 # update Pi libraries
 sudo apt update
