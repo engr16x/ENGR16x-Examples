@@ -237,7 +237,7 @@ class LightSensor(object):
     '''
     def __init__(self, channel):
         self.channel = channel
-        self.adc = ADC()
+        self.adc = ADC(address = 0x08)
 
     # Gets the current light strength percentage (0% or 100%)
     @property
@@ -319,7 +319,7 @@ class IRSensor(object):
     def __init__(self, channel1, channel2):
         self.channel1 = channel1
         self.channel2 = channel2
-        self.adc = ADC()
+        self.adc = ADC(address = 0x08)
 
     @property
     def value1(self):
