@@ -20,17 +20,46 @@ sudo apt-get install samba libncurses5 default-jdk xrdp dnsmasq hostapd libffi-d
 
 #IPTables for network things
 sudo apt-get install iptables -y
-
 # stuff that is in the grove.py deb dependencies
+
 sudo apt-get install --no-install-recommends -y git libi2c-dev i2c-tools  \
     python3-setuptools python3-pip python3-smbus python3-dev python3-serial python3-rpi.gpio python3-numpy python3-scipy
 
+echo "1"
+echo "1"
+echo "1"
+echo "1"
+echo "1"
+echo "1"
 # install more python libraries because they deserve it :)
-sudo pip3 install numpy matplotlib pandas scipy --break-system-packages --upgrade
+sudo apt install python3-numpy
+echo "2"
+echo "2"
+echo "2"
+echo "2"
+echo "2"
+echo "2"
+sudo apt install python3-matplotlib -y
+echo "3"
+echo "3"
+echo "3"
+echo "3"
+echo "3"
+sudo apt install python3-pandas -y
+echo "4"
+echo "4"
+echo "4"
+echo "4"
+sudo apt install python3-scipy -y
 
+echo "5"
+echo "5"
+echo "5"
+echo "5"
 # remove geany so thonny is the default editor
 sudo apt-get purge geany -y
 sudo apt autoremove -y
+
 
 # install grove.py library for BaseHAT
 # clone the repository (copy the code to the Pi)
