@@ -41,7 +41,7 @@ sudo pip3 install . --break-system-packages
 cd /home/pi
 
 git clone https://github.com/engr16x/python-build-hat.git
-cd python-build-hat.git
+cd python-build-hat
 sudo pip3 install . --break-system-packages
 cd /home/pi
 
@@ -120,7 +120,9 @@ cp -r $CALLDIR/files/new_desktop/. /home/pi/Desktop/new_desktop/
 
 cd /home/pi/
 # clone the Examples repository (copy the code)
-git clone https://github.com/engr16x/ENGR16x-Examples.git
+# git clone https://github.com/engr16x/ENGR16x-Examples.git
+git clone --depth 1 https://github.com/engr16x/ENGR16x-Examples.git
+
 mkdir /home/pi/Desktop/new_desktop/Examples
 # copy examples to the desktop
 cp -r /home/pi/ENGR16x-Examples/Examples/. /home/pi/Desktop/new_desktop/Examples
