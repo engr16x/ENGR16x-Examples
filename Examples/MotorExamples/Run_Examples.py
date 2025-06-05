@@ -76,10 +76,10 @@ def main():
 
 def manual_run_for_time(motor):
     print("Start motor")
-    motor.pwm(.5)
+    motor.start(50)
     time.sleep(3)
     print("Stop motor")
-    motor.pwm(0)
+    motor.stop(0)
     time.sleep(1)
 
 def run_for_time(motor):
